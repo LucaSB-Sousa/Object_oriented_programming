@@ -13,6 +13,8 @@ public class Usuario {
     private Cnh cnh;
     private  Veiculo Veiculo;
     private final List<Infracao> infracoes = new ArrayList<>();
+    private static List<Usuario> usuarios = new ArrayList<>();
+
 
     public Usuario(String nome, String cpf, String sexo, String email, Cnh cnh, negocio.Veiculo veiculo) {
         this.nome = nome;
@@ -109,6 +111,24 @@ public class Usuario {
             }
         }
 
+    }
+
+    public static Usuario obterDadosPorNome(String nome) {
+        for (Usuario usuario : usuarios) {
+            if (usuario.getNome().equalsIgnoreCase(nome)) {
+                return usuario;
+            }
+        }
+        return null;
+    }
+
+    public static Usuario obterUsuarioPorNomeOuCpf(String nomeOuCpf) {
+        for (Usuario usuario : usuarios) {
+            if (usuario.getNome().equalsIgnoreCase(nomeOuCpf) || usuario.getCpf().equals(nomeOuCpf)) {
+                return usuario;
+            }
+        }
+        return null;
     }
 }
 

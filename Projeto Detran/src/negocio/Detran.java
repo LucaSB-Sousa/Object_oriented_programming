@@ -1,5 +1,7 @@
 package negocio;
 
+import dados.Dados;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -7,8 +9,11 @@ public class Detran {
     private List<Usuario> usuarios = new ArrayList<>();
     private Infracao infracao;
     private Cnh cnh;
+    private Dados dados;
 
-    public Detran() {
+
+    public Detran(Dados dados) {
+        this.dados = dados;
     }
 
     public List<Usuario> getUsuarios() {
@@ -29,6 +34,11 @@ public class Detran {
 
     public void setInfracao(Infracao infracao) {
         this.infracao = infracao;
+    }
+
+
+    public boolean autenticarDetran(String login, String senha) {
+        return dados.getLoginDetran().equals(login) && dados.getSenhaDetran().equals(senha);
     }
 
     public void adicionarInfracaoAoUsuario(Usuario usuario, Infracao infracao){

@@ -68,7 +68,6 @@ public abstract class Veiculo {
 		this.marca = marca;
 	}
 
-	@Override
 	public String obterDadosVeiculo() {
 		return "Veiculo [modelo=" + modelo + ", placa=" + placa + ", cor=" + cor + ", ano=" + ano + ", estado=" + estado
 				+ ", marca=" + marca + "]";
