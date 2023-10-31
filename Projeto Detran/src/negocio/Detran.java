@@ -1,8 +1,5 @@
-package detran;
+package negocio;
 
-import infracao.Infracao;
-import usuario.Usuario;
-import cnh.Cnh;
 import java.util.ArrayList;
 import java.util.List;
 

@@ -1,6 +1,4 @@
-package cnh;
-
-import infracao.Infracao;
+package negocio;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;

@@ -1,6 +1,4 @@
-package infracao;
-
-import usuario.Usuario;
+package negocio;
 
 public class Infracao {
     private String tipo;

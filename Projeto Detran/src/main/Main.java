@@ -1,8 +1,8 @@
 package main;
 
 import java.util.Scanner;
-import detran.Detran;
-import usuario.Usuario;
+
+import negocio.Usuario;
 import dados.Dados;
 
 public class Main {

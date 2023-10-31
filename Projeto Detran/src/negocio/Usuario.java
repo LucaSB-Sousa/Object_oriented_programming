@@ -1,8 +1,6 @@
-package usuario;
+package negocio;
 
-import cnh.Cnh;
-import infracao.Infracao;
-import veiculo.Veiculo;
+import negocio.Veiculo;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Iterator;
@@ -16,7 +14,7 @@ public class Usuario {
     private  Veiculo Veiculo;
     private final List<Infracao> infracoes = new ArrayList<>();
 
-    public Usuario(String nome, String cpf, String sexo, String email, Cnh cnh, veiculo.Veiculo veiculo) {
+    public Usuario(String nome, String cpf, String sexo, String email, Cnh cnh, negocio.Veiculo veiculo) {
         this.nome = nome;
         this.cpf = cpf;
         this.sexo = sexo;
@@ -65,15 +63,15 @@ public class Usuario {
         this.cnh = cnh;
     }
 
-    public veiculo.Veiculo getVeiculo() {
+    public negocio.Veiculo getVeiculo() {
         return Veiculo;
     }
 
-    public void setVeiculo(veiculo.Veiculo veiculo) {
+    public void setVeiculo(negocio.Veiculo veiculo) {
         Veiculo = veiculo;
     }
 
-    public void cadastrarConta(String nome, String cpf, String sexo, String email, Cnh cnh, veiculo.Veiculo veiculo){
+    public void cadastrarConta(String nome, String cpf, String sexo, String email, Cnh cnh, negocio.Veiculo veiculo){
 
     }
 

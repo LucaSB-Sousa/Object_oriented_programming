@@ -1,8 +1,8 @@
 package dados;
 
-import usuario.Usuario;
-import infracao.Infracao;
-import cnh.Cnh;
+import negocio.Usuario;
+import negocio.Infracao;
+import negocio.Cnh;
 import java.util.ArrayList;
 import java.util.List;
 
