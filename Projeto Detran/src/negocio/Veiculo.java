@@ -69,7 +69,7 @@ public abstract class Veiculo {
 	}
 
 	@Override
-	public String toString() {
+	public String obterDadosVeiculo() {
 		return "Veiculo [modelo=" + modelo + ", placa=" + placa + ", cor=" + cor + ", ano=" + ano + ", estado=" + estado
 				+ ", marca=" + marca + "]";
 	}
