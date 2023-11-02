@@ -1,6 +1,5 @@
 package negocio;
 
-import negocio.Veiculo;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Iterator;
@@ -73,9 +72,7 @@ public class Usuario {
         Veiculo = veiculo;
     }
 
-    public void cadastrarConta(String nome, String cpf, String sexo, String email, Cnh cnh, negocio.Veiculo veiculo){
 
-    }
 
     public String obterDadosUsuario(String nome, String cpf, String sexo, String email) {
         return "(" + nome + ", " + cpf + ", " + sexo + ", " + email + ")";
@@ -129,6 +126,20 @@ public class Usuario {
             }
         }
         return null;
+    }
+
+    public Usuario(String[] userData) {
+        this.nome = userData[0].trim();
+        this.cpf = userData[1].trim();
+        this.sexo = userData[2].trim();
+        this.email = userData[3].trim();
+
+    }
+    
+    public static Usuario cadastrarConta(String[] userData){
+        Usuario novoUsuario = new Usuario(userData);
+        usuarios.add(novoUsuario);
+        return novoUsuario;
     }
 }
 

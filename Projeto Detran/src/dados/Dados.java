@@ -77,7 +77,10 @@ public class Dados {
 
     public String getSenhaDetran() {return senhaDetran;}
 
+
+    //usar dados como coisa adicional
     public Dados() {
+
         Carro carroFiesta = new Carro("Fiesta", "ABC-1234", "Azul", 2020, "SP", "Ford", 1200, 5);
         Moto motoCB = new Moto("CB 500", "XYZ-5678", "Preta", 2019, "RJ", "Honda", 200, 2);
         Caminhao caminhaoFH = new Caminhao("FH 540", "JKL-9101", "Branco", 2018, "MG", "Volvo", 8000, 2, "Caminhão Toco");
@@ -109,6 +112,8 @@ public class Dados {
         cnhMatheus.addInfracao(infracoes.get(0));
         cnhJulia.addInfracao(infracoes.get(1));
         cnhCarlos.addInfracao(infracoes.get(2));
+
+
     }
 
 }

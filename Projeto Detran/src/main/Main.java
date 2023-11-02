@@ -61,23 +61,27 @@ public class Main {
                         System.out.println("Entrada inválida. Por favor, insira nome, cpf, sexo e email separados por vírgula:");
                         userData = scanner.nextLine().split(",");
                     }
-                    String nome = userData[0].trim();
-                    String cpf = userData[1].trim();
-                    String sexo = userData[2].trim();
-                    String email = userData[3].trim();
+                    Usuario novoUsuario = Usuario.cadastrarConta(userData);
+
                     break;
                 case 2:
-                    System.out.println("Informe nome, cpf, sexo, email para obter dados (separados por vírgula):");
-                    userData = scanner.nextLine().split(",");
-                    while (userData.length != 4) {
-                        System.out.println("Entrada inválida. Por favor, insira nome, cpf, sexo e email separados por vírgula:");
-                        userData = scanner.nextLine().split(",");
+                    System.out.println("Informe o nome ou CPF do usuário:");
+                    String cpf1 = scanner.nextLine();
+                    Usuario cpfEncontrado = Usuario.obterUsuarioPorNomeOuCpf(cpf1);
+                    if (cpfEncontrado != null) {
+                        System.out.println("Dados do usuário:");
+                        System.out.println("Nome: " + cpfEncontrado.getNome());
+                        System.out.println("CPF: " + cpfEncontrado.getCpf());
+                        System.out.println("Sexo: " + cpfEncontrado.getSexo());
+                        System.out.println("Email: " + cpfEncontrado.getEmail());
+                    } else {
+                        System.out.println("Usuário não encontrado.");
                     }
-                    nome = userData[0].trim();
-                    cpf = userData[1].trim();
-                    sexo = userData[2].trim();
-                    email = userData[3].trim();
                     break;
+
+
+
+
                 case 3:
                     System.out.println("Informe o nome ou CPF do usuário:");
                     String identificador = scanner.nextLine();
