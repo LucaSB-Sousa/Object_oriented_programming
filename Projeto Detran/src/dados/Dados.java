@@ -12,7 +12,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Dados {
-    private List<Usuario> usuarios = new ArrayList<>();
     private List<Infracao> infracoes = new ArrayList<>();
     private List<Cnh> cnhs = new ArrayList<>();
     private List<Carro> carros = new ArrayList<>();
@@ -26,17 +25,6 @@ public class Dados {
 
 
 
-    public void addUsuario(Usuario usuario) {
-        usuarios.add(usuario);
-    }
-
-    public void removeUsuario(Usuario usuario) {
-        usuarios.remove(usuario);
-    }
-
-    public List<Usuario> getUsuarios() {
-        return usuarios;
-    }
 
     public void addInfracao(Infracao infracao) {
         infracoes.add(infracao);
@@ -101,9 +89,9 @@ public class Dados {
         cnhs.add(cnhJulia);
         cnhs.add(cnhCarlos);
 
-        usuarios.add(new Usuario("Matheus", "12345678901", "Masculino", "matheus@email.com", cnhMatheus, carroFiesta));
-        usuarios.add(new Usuario("Julia", "98765432109", "Feminino", "julia@email.com", cnhJulia, motoCB));
-        usuarios.add(new Usuario("Carlos", "11223344556", "Masculino", "carlos@email.com", cnhCarlos, caminhaoFH));
+        Usuario.cadastrarConta(new String[]{"Matheus", "12345678901", "Masculino", "matheus@email.com"});
+        Usuario.cadastrarConta(new String[]{"Julia", "98765432109", "Feminino", "julia@email.com"});
+        Usuario.cadastrarConta(new String[]{"Carlos", "11223344556", "Masculino", "carlos@email.com"});
 
         infracoes.add(new Infracao("Excesso de velocidade", 150, 20220101, "Av. Paulista, SP", "Pendente", "INF001"));
         infracoes.add(new Infracao("Estacionamento proibido", 100, 20220105, "Rua Augusta, SP", "Pendente", "INF002"));

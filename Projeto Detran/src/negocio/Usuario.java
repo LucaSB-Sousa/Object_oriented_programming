@@ -1,6 +1,7 @@
 package negocio;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Iterator;
 
@@ -11,8 +12,7 @@ public class Usuario {
     private String email;
     private Cnh cnh;
     private  Veiculo Veiculo;
-    private final List<Infracao> infracoes = new ArrayList<>();
-    private static List<Usuario> usuarios = new ArrayList<>();
+    private static Usuario[] usuarios = new Usuario[0];
 
 
     public Usuario(String nome, String cpf, String sexo, String email, Cnh cnh, negocio.Veiculo veiculo) {
@@ -72,7 +72,13 @@ public class Usuario {
         Veiculo = veiculo;
     }
 
+    public static Usuario[] getUsuarios() {
+        return usuarios;
+    }
 
+    public static void setUsuarios(Usuario[] usuarios) {
+        Usuario.usuarios = usuarios;
+    }
 
     public String obterDadosUsuario(String nome, String cpf, String sexo, String email) {
         return "(" + nome + ", " + cpf + ", " + sexo + ", " + email + ")";
@@ -97,18 +103,18 @@ public class Usuario {
         }
     }
 
-    public void transferirInfracao(Usuario outroUsuario, String idInfracao) {
-        Iterator<Infracao> iterator = this.infracoes.iterator();
-        while (iterator.hasNext()) {
-            Infracao infracao = iterator.next();
-            if (infracao.getId().equals(idInfracao)) {
-                outroUsuario.getCnh().addInfracao(infracao);
-                iterator.remove();
-                break;
-            }
-        }
-
-    }
+//    public void transferirInfracao(Usuario outroUsuario, String idInfracao) {
+//        Iterator<Infracao> iterator = this.infracoes.iterator();
+//        while (iterator.hasNext()) {
+//            Infracao infracao = iterator.next();
+//            if (infracao.getId().equals(idInfracao)) {
+//                outroUsuario.getCnh().addInfracao(infracao);
+//                iterator.remove();
+//                break;
+//            }
+//        }
+//
+//    }
 
     public static Usuario obterDadosPorNome(String nome) {
         for (Usuario usuario : usuarios) {
@@ -128,17 +134,17 @@ public class Usuario {
         return null;
     }
 
-    public Usuario(String[] userData) {
-        this.nome = userData[0].trim();
-        this.cpf = userData[1].trim();
-        this.sexo = userData[2].trim();
-        this.email = userData[3].trim();
+    public static Usuario cadastrarConta(String[] dadosNovoUsuario) {
+        String nome = dadosNovoUsuario[0].trim();
+        String cpf = dadosNovoUsuario[1].trim();
+        String sexo = dadosNovoUsuario[2].trim();
+        String email = dadosNovoUsuario[3].trim();
 
-    }
-    
-    public static Usuario cadastrarConta(String[] userData){
-        Usuario novoUsuario = new Usuario(userData);
-        usuarios.add(novoUsuario);
+        Usuario novoUsuario = new Usuario(nome, cpf, sexo, email, null, null);
+
+        usuarios = Arrays.copyOf(usuarios, usuarios.length + 1);
+        usuarios[usuarios.length - 1] = novoUsuario;
+
         return novoUsuario;
     }
 }

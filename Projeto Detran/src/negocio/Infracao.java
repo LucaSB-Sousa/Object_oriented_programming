@@ -1,5 +1,7 @@
 package negocio;
 
+import java.util.Arrays;
+
 public class Infracao {
     private String tipo;
     private int Valor;
@@ -7,6 +9,8 @@ public class Infracao {
     private String local;
     private String status;
     private String id;
+    private static Infracao[] infracoes  = new Infracao[0];
+
 
     public Infracao(String tipo, int valor, int dataInfracao, String local, String status, String id) {
         this.tipo = tipo;
@@ -63,5 +67,10 @@ public class Infracao {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public static void adicionarInfracao(Infracao novaInfracao) {
+        infracoes = Arrays.copyOf(infracoes, infracoes.length + 1);
+        infracoes[infracoes.length - 1] = novaInfracao;
     }
 }

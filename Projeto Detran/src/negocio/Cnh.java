@@ -9,6 +9,7 @@ import java.util.List;
 
 public class Cnh {
 
+    private Infracao[] infracoes;
     private String categoria;
     private String ufEmissao;
     private String dataValidade;
@@ -16,7 +17,6 @@ public class Cnh {
     private int pontuacao;
     private String status;
     private String numCnh;
-    private List<Infracao> infracoes = new ArrayList<>();
 
 
     public Cnh(String categoria, String ufEmissao, String dataValidade, String dataEmissao, int pontuacao,
@@ -28,6 +28,7 @@ public class Cnh {
         this.pontuacao = pontuacao;
         this.status = status;
         this.numCnh = numCnh;
+        this.infracoes = new Infracao[0];
     }
 
     public String getCategoria() {
@@ -58,13 +59,7 @@ public class Cnh {
         return numCnh;
     }
 
-    public List<Infracao> getInfracoes() {
-        return infracoes;
-    }
 
-    public void addInfracao(Infracao infracao) {
-        this.infracoes.add(infracao);
-    }
     public String obterDadosCnh(String categoria, String ufEmissao, String dataEmissao, String dataValidade,
                                 int pontuacao, String status, String numCnh) {
         return "(" + categoria + ", " + ufEmissao + ", " + dataEmissao + ", " + dataValidade + pontuacao + status +
@@ -84,4 +79,5 @@ public class Cnh {
             dataValidade = sdf.format(dateValidade);
         }
     }
+
 }

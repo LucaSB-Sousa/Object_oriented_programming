@@ -145,15 +145,12 @@ public class Main {
                 case 1:
                     System.out.println("Informe os dados da infração (tipo, valor, data, local, status, id - separados por vírgula):");
                     String[] infracaoData = scanner.nextLine().split(",");
-                    String tipo = infracaoData[0].trim();
-                    int valor = Integer.parseInt(infracaoData[1].trim());
-                    int data = Integer.parseInt(infracaoData[2].trim());
-                    String local = infracaoData[3].trim();
-                    String status = infracaoData[4].trim();
-                    String id = infracaoData[5].trim();
+                    Infracao novaInfracao = Detran.cadastrarInfracao(infracaoData);
                     break;
                 case 2:
-                    System.out.println("Deletando usuário...");
+                    System.out.println("Informe o usuario a ser deletado:");
+                    String cpfDoUsuario = scanner.nextLine();
+                    Detran.deletarUsuario(cpfDoUsuario);
                     break;
                 case 3:
                     System.out.println("Informe o nome do usuário:");
@@ -171,7 +168,7 @@ public class Main {
                     break;
                 case 4:
                     System.out.println("Listando todos os usuários...");
-                    for (Usuario usuario : dados.getUsuarios()) {
+                    for (Usuario usuario : Usuario.getUsuarios()) {
                         System.out.println("Nome: " + usuario.getNome());
                         System.out.println("CPF: " + usuario.getCpf());
                         System.out.println("Sexo: " + usuario.getSexo());
