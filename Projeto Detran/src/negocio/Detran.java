@@ -1,6 +1,7 @@
 package negocio;
 
 import dados.Dados;
+;
 
 public class Detran {
     private Usuario usuarios;
@@ -41,7 +42,7 @@ public class Detran {
         }
     }
 
-    public static void deletarUsuario(String cpfUsuarioASerRemovido) {
+/*    public static void deletarUsuario(String cpfUsuarioASerRemovido) {
         Usuario[] usuariosAtuais = Usuario.getUsuarios();
         int indexToRemove = -1;
 
@@ -64,7 +65,7 @@ public class Detran {
             Usuario.setUsuarios(novosUsuarios);
         }
 
-    }
+    }*/
 
     public static Infracao cadastrarInfracao (String[] dadosInfracao){
         String tipo = dadosInfracao[0].trim();

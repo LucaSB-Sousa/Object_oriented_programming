@@ -1,8 +1,6 @@
 package negocio;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+
 import java.util.Iterator;
 
 public class Usuario {
@@ -12,7 +10,9 @@ public class Usuario {
     private String email;
     private Cnh cnh;
     private  Veiculo Veiculo;
+/*
     private static Usuario[] usuarios = new Usuario[0];
+*/
 
 
     public Usuario(String nome, String cpf, String sexo, String email, Cnh cnh, negocio.Veiculo veiculo) {
@@ -72,23 +72,23 @@ public class Usuario {
         Veiculo = veiculo;
     }
 
-    public static Usuario[] getUsuarios() {
+/*    public static Usuario[] getUsuarios() {
         return usuarios;
     }
 
     public static void setUsuarios(Usuario[] usuarios) {
         Usuario.usuarios = usuarios;
-    }
+    }*/
 
     public String obterDadosUsuario(String nome, String cpf, String sexo, String email) {
         return "(" + nome + ", " + cpf + ", " + sexo + ", " + email + ")";
     }
-    public List<Infracao> obterInfracoesCnh() {
+/*    public List<Infracao> obterInfracoesCnh() {
         if (this.cnh != null) {
             return this.cnh.getInfracoes();
         }
         return new ArrayList<>();
-    }
+    }*/
 
     public Veiculo procurarVeiculo(String placa) {
         if (this.Veiculo != null && this.Veiculo.getPlaca().equals(placa)) {
@@ -116,7 +116,7 @@ public class Usuario {
 //
 //    }
 
-    public static Usuario obterDadosPorNome(String nome) {
+/*    public static Usuario obterDadosPorNome(String nome) {
         for (Usuario usuario : usuarios) {
             if (usuario.getNome().equalsIgnoreCase(nome)) {
                 return usuario;
@@ -132,9 +132,9 @@ public class Usuario {
             }
         }
         return null;
-    }
+    }*/
 
-    public static Usuario cadastrarConta(String[] dadosNovoUsuario) {
+/*    public static Usuario cadastrarConta(String[] dadosNovoUsuario) {
         String nome = dadosNovoUsuario[0].trim();
         String cpf = dadosNovoUsuario[1].trim();
         String sexo = dadosNovoUsuario[2].trim();
@@ -142,10 +142,27 @@ public class Usuario {
 
         Usuario novoUsuario = new Usuario(nome, cpf, sexo, email, null, null);
 
-        usuarios = Arrays.copyOf(usuarios, usuarios.length + 1);
-        usuarios[usuarios.length - 1] = novoUsuario;
+        Usuario[] cadastroUsuario = new Usuario[usuarios.length + 1];
+        for (int i = 0; i < usuarios.length; i++) {
+            cadastroUsuario[i] = usuarios[i];
+        }
+        cadastroUsuario[usuarios.length] = novoUsuario;
+        usuarios = cadastroUsuario;
 
         return novoUsuario;
+
+    }*/
+
+    @Override
+    public String toString() {
+        return "Usuario{" +
+                "nome='" + nome + '\'' +
+                ", cpf='" + cpf + '\'' +
+                ", sexo='" + sexo + '\'' +
+                ", email='" + email + '\'' +
+                ", cnh=" + cnh +
+                ", Veiculo=" + Veiculo +
+                '}';
     }
 }
 

@@ -80,4 +80,7 @@ public class Cnh {
         }
     }
 
+    public List<Infracao> getInfracoes() {
+        return null;
+    }
 }

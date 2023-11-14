@@ -2,13 +2,54 @@ package main;
 
 import java.util.Scanner;
 
-import negocio.*;
 import dados.Dados;
+import negocio.*;
 
 public class Main {
     private static Dados dados = new Dados();
     private static Detran detran = new Detran(dados);
+    private static Scanner in = new Scanner(System.in);
 
+    public static boolean cadastrarConta(){
+        Usuario novoUsuario = lerDadosUsuario();
+
+        if (dados.getnUsuarios() < 100) {
+            dados.setUsuario(dados.getnUsuarios(), novoUsuario);
+            dados.setnUsuarios(dados.getnUsuarios()+1);
+            System.out.println("Usuario cadastrado com sucesso!\n");
+            return true;
+        } else {
+            System.out.println("Não foi possivel cadastrar o usuario!\n");
+            return false;
+        }
+    }
+
+    public static Usuario lerDadosUsuario(){
+        String nome;
+        String cpf;
+        String sexo;
+        String email;
+
+        in.nextLine(); //esvazia dados do teclado
+        System.out.println("Digite o nome do usuário: ");
+        nome = in.nextLine();
+        System.out.println("Digite o numero de cpf:");
+        cpf = in.nextLine();
+        System.out.println("Digite o sexo:");
+        sexo = in.nextLine();
+        System.out.println("Digite oemail:");
+        email = in.nextLine();
+
+        Usuario novoUsuario = new Usuario(nome, cpf, sexo, email, null, null);
+        return novoUsuario;
+    }
+
+    public static void listarUsuarios(){
+        in.nextLine();
+        for(int i = 0; i < dados.getnUsuarios(); i++){
+            System.out.println(i + "->" + dados.getUsuarios()[i].toString());
+        }
+    }
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         int choice;
@@ -56,15 +97,9 @@ public class Main {
             switch (choice) {
                 case 1:
                     System.out.println("Informe nome, cpf, sexo, email (separados por vírgula):");
-                    String[] userData = scanner.nextLine().split(",");
-                    while (userData.length != 4) {
-                        System.out.println("Entrada inválida. Por favor, insira nome, cpf, sexo e email separados por vírgula:");
-                        userData = scanner.nextLine().split(",");
-                    }
-                    Usuario novoUsuario = Usuario.cadastrarConta(userData);
-
-                    break;
-                case 2:
+                    cadastrarConta();
+                break;
+                /*case 2:
                     System.out.println("Informe o nome ou CPF do usuário:");
                     String cpf1 = scanner.nextLine();
                     Usuario cpfEncontrado = Usuario.obterUsuarioPorNomeOuCpf(cpf1);
@@ -103,7 +138,7 @@ public class Main {
                         System.out.println("Usuário não encontrado.");
                     }
                     break;
-
+*/
                 case 4:
                     System.out.println("Retornando ao menu principal...");
                     break;
@@ -115,15 +150,15 @@ public class Main {
     }
 
     private static void handleDetran(Scanner scanner) {
-        System.out.println("Informe o login do Detran:");
-        String login = scanner.nextLine();
-        System.out.println("Informe a senha do Detran:");
-        String senha = scanner.nextLine();
-
-        if (!detran.autenticarDetran(login, senha)) {
-            System.out.println("Login ou senha incorretos.");
-            return;
-        }
+//        System.out.println("Informe o login do Detran:");
+//        String login = scanner.nextLine();
+//        System.out.println("Informe a senha do Detran:");
+//        String senha = scanner.nextLine();
+//
+//        if (!detran.autenticarDetran(login, senha)) {
+//            System.out.println("Login ou senha incorretos.");
+//            return;
+//        }
 
         int choice;
         do {
@@ -147,34 +182,27 @@ public class Main {
                     String[] infracaoData = scanner.nextLine().split(",");
                     Infracao novaInfracao = Detran.cadastrarInfracao(infracaoData);
                     break;
-                case 2:
-                    System.out.println("Informe o usuario a ser deletado:");
-                    String cpfDoUsuario = scanner.nextLine();
-                    Detran.deletarUsuario(cpfDoUsuario);
-                    break;
-                case 3:
-                    System.out.println("Informe o nome do usuário:");
-                    String nome = scanner.nextLine();
-                    Usuario usuarioEncontrado = Usuario.obterDadosPorNome(nome);
-                    if (usuarioEncontrado != null) {
-                        System.out.println("Dados do usuário:");
-                        System.out.println("Nome: " + usuarioEncontrado.getNome());
-                        System.out.println("CPF: " + usuarioEncontrado.getCpf());
-                        System.out.println("Sexo: " + usuarioEncontrado.getSexo());
-                        System.out.println("Email: " + usuarioEncontrado.getEmail());
-                    } else {
-                        System.out.println("Usuário não encontrado.");
-                    }
-                    break;
+//                case 2:
+//                    System.out.println("Informe o usuario a ser deletado:");
+//                    String cpfDoUsuario = scanner.nextLine();
+//                    Detran.deletarUsuario(cpfDoUsuario);
+//                    break;
+//                case 3:
+//                    System.out.println("Informe o nome do usuário:");
+//                    String nome = scanner.nextLine();
+//                    Usuario usuarioEncontrado = Usuario.obterDadosPorNome(nome);
+//                    if (usuarioEncontrado != null) {
+//                        System.out.println("Dados do usuário:");
+//                        System.out.println("Nome: " + usuarioEncontrado.getNome());
+//                        System.out.println("CPF: " + usuarioEncontrado.getCpf());
+//                        System.out.println("Sexo: " + usuarioEncontrado.getSexo());
+//                        System.out.println("Email: " + usuarioEncontrado.getEmail());
+//                    } else {
+//                        System.out.println("Usuário não encontrado.");
+//                    }
+//                    break;
                 case 4:
-                    System.out.println("Listando todos os usuários...");
-                    for (Usuario usuario : Usuario.getUsuarios()) {
-                        System.out.println("Nome: " + usuario.getNome());
-                        System.out.println("CPF: " + usuario.getCpf());
-                        System.out.println("Sexo: " + usuario.getSexo());
-                        System.out.println("Email: " + usuario.getEmail());
-                        System.out.println("--------------------------");
-                    }
+                    listarUsuarios();
                     break;
                 case 5:
                     System.out.println("Listando todas as infrações...");

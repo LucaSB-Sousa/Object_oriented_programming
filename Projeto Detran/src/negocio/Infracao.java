@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 public class Infracao {
     private String tipo;
-    private int Valor;
+    private int valor;
     private int dataInfracao;
     private String local;
     private String status;
@@ -14,7 +14,7 @@ public class Infracao {
 
     public Infracao(String tipo, int valor, int dataInfracao, String local, String status, String id) {
         this.tipo = tipo;
-        Valor = valor;
+        this.valor = valor;
         this.dataInfracao = dataInfracao;
         this.local = local;
         this.status = status;
@@ -30,11 +30,11 @@ public class Infracao {
     }
 
     public int getValor() {
-        return Valor;
+        return valor;
     }
 
     public void setValor(int valor) {
-        Valor = valor;
+        this.valor = valor;
     }
 
     public int getDataInfracao() {
@@ -69,8 +69,26 @@ public class Infracao {
         this.id = id;
     }
 
-    public static void adicionarInfracao(Infracao novaInfracao) {
-        infracoes = Arrays.copyOf(infracoes, infracoes.length + 1);
-        infracoes[infracoes.length - 1] = novaInfracao;
-    }
+//    public static void adicionarInfracao(String[] dadosNovaInfracao) {
+//
+//        String tipo = dadosNovaInfracao[0].trim();
+//        int valor = Integer.parseInt(dadosNovaInfracao[1].trim());
+//        int dataInfracao = Integer.parseInt(dadosNovaInfracao[2].trim());
+//        String local = dadosNovaInfracao[3].trim();
+//        String status = dadosNovaInfracao[3].trim();
+//        String id = dadosNovaInfracao[3].trim();
+//
+//
+//        Infracao novaInfracao = new Infracao(tipo, valor, dataInfracao, local, status, id);
+//
+//        Infracao[] cadastroUsuario = new Infracao[infracoes.length + 1];
+//        for (int i = 0; i < infracoes.length; i++) {
+//            cadastroUsuario[i] = infracoes[i];
+//        }
+//        cadastroUsuario[infracoes.length] = novaInfracao;
+//        infracoes = cadastroUsuario;
+//
+//        return novoUsuario;
+//
+//    }
 }
