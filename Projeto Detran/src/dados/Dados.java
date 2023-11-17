@@ -1,95 +1,276 @@
 package dados;
 
-import negocio.AutomoveisComEixo;
-import negocio.Caminhao;
-import negocio.Carro;
-import negocio.Cnh;
-import negocio.Infracao;
-import negocio.Moto;
-import negocio.Usuario;
-import negocio.Van;
-import negocio.Veiculo;
+import negocio.*;
 
 public class Dados {
+	private Usuario[] usuarios;
+	private int nUsuarios = 0;
+	private Cnh[] cnhs ;
+	private int nCnhs = 0;
 	
-   /* private Infracao infracoes[];
-    private int nInfracao = 0;
-    
-    private Carro carros[];
-    private int nCarros = 0;
-    
-    private Moto motos[];
-    private int nMotos = 0;
-    
-    private Caminhao caminhoes[];
-    private int nCaminhoes = 0;
-    
-    private Van vans[];
-    private int nVan = 0;
-    
-    private AutomoveisComEixo automoveisComEixos[];
-    private int nAutomoveisComEixo = 0;
-    
-    private Veiculo veiculos[];
-    private int nVeiculos = 0;
-    */
+	private Veiculo[] veiculos;
+	private int nVeiculos = 0;
+	private AutomoveisComEixo[] autosComEixo;
+	private int nAutosComEixo;
+	private Caminhao[] caminhoes;
+	private int nCaminhoes;
+	private Moto[] motos;
+	private int nMotos;
+	private Van[] vans;
+	private int nVans;
+	private Carro[] carros;
+	private int nCarros;
 
-	private final String loginDetran = "Detran";
-    private final String senhaDetran = "1234";
-    
-    public String getLoginDetran() {return loginDetran;}
-
-    public String getSenhaDetran() {return senhaDetran;}
-
-	public Infracao[] getInfracoes() {
-		return getInfracoes();
+	
+	public Dados() {
+		usuarios = new Usuario[100];
+		cnhs = new Cnh[50];
+		veiculos = new Veiculo[50];
+		autosComEixo = new AutomoveisComEixo[50];
+		caminhoes = new Caminhao[50];
+		motos = new Moto[50];
+		carros = new Carro[50];
+		vans = new Van[50];
+	}
+	
+	public Usuario[] getUsuarios() {
+		return usuarios;
+	}
+	
+	public Usuario getUsuarios(int i) {
+		return usuarios[i];
 	}
 
-	public Carro[] getCarros() {
-		return getCarros();
+	public String[] getNomeUsuarios() {
+		String[] s = new String[nUsuarios];
+		for(int i = 0; i < nUsuarios; i++) {
+			s[i] = usuarios[i].getNome();
+		}
+		return s;
+	}
+	
+	public void setUsuarios(Usuario[] usuarios) {
+		this.usuarios = usuarios;
+	}
+	
+	public void setAluno(int i, Usuario a) {
+		usuarios[i] = a;
 	}
 
-	public Moto[] getMotos() {
-		return getMotos();
+	public int getnUsuarios() {
+		return nUsuarios;
 	}
 
-	public Caminhao[] getCaminhoes() {
-		return getCaminhoes();
+	public void setnUsuarios(int nUsuarios) {
+		this.nUsuarios = nUsuarios;
 	}
 
-	public Van[] getVans() {
-		return getVans();
+	public Cnh[] getCnhs() {
+		return cnhs;
+	}
+	
+	public Cnh getCnhs(int i) {
+		return cnhs[i];
 	}
 
-	public AutomoveisComEixo[] getAutomoveisComEixos() {
-		return getAutomoveisComEixos();
+	public String[] getNumCnh() {
+		String[] s = new String[nCnhs];
+		for(int i = 0; i < nCnhs; i++) {
+			s[i] = cnhs[i].getNumCnh();
+		}
+		return s;
+	}
+
+
+	public void setCnhs(Cnh[] cnhs) {
+		this.cnhs = cnhs;
+	}
+	
+	public void setCnh(int i, Cnh c) {
+		cnhs[i] = c;
+	}
+
+	public int getnCnhs() {
+		return nCnhs;
+	}
+
+	public void setnCnhs(int nCnhs) {
+		this.nCnhs = nCnhs;
 	}
 
 	public Veiculo[] getVeiculos() {
-		return getVeiculos();
+		return veiculos;
+	}
+	
+	public Veiculo getVeiculo(int i) {
+		return veiculos[i];
 	}
 
-	public static void NovosDados() {
-        //Carro carromeucarro = new Carro("Fiesta", "ABC-1234", "Azul", 2020, "SP", "Ford", 1200, 5);
-        //Moto motoCB = new Moto("CB 500", "XYZ-5678", "Preta", 2019, "RJ", "Honda", 200, 2);
-        //Caminhao caminhaoFH = new Caminhao("FH 540", "JKL-9101", "Branco", 2018, "MG", "Volvo", 8000, 2, "Caminhão Toco");
-        //Van vanSprinter = new Van("Sprinter", "MNO-1122", "Prata", 2021, "ES", "Mercedes", 3000, 16, "Van Passageiro");
-        //AutomoveisComEixo automovelEco = new AutomoveisComEixo("Ecosport", "QRS-1314", "Vermelho", 2022, "BA", "Ford", 1300, 5, "SUV");
+	public void setVeiculo(Veiculo[] veiculos) {
+		this.veiculos = veiculos;
+	}
+	
+	public void setVeiculo(int i, Veiculo v) {
+		veiculos[i] = v;
+	}
 
-        Cnh.cadastrarCnh(new Cnh("B", "SP", "01/01/2025", "01/01/2015", 0, "Ativa", "12345678901"),Cnh.quantDeCnhs());
-        Cnh.cadastrarCnh(new Cnh("A", "RJ", "15/05/2024", "15/05/2014", 0, "Ativa", "98765432109"),Cnh.quantDeCnhs());
-        Cnh.cadastrarCnh(new Cnh("D", "MG", "10/10/2023", "10/10/2013", 0, "Ativa", "11223344556"),Cnh.quantDeCnhs());
-        
-		Usuario.cadastrarUsuario(new Usuario("Matheus", "12345678901", "Masculino", "matheus@email.com", null, null), Usuario.quantDeUsuarios());
-        Usuario.cadastrarUsuario(new Usuario("Julia", "98765432109", "Feminino", "julia@email.com", null, null),Usuario.quantDeUsuarios());
-        Usuario.cadastrarUsuario(new Usuario("Carlos", "11223344556", "Masculino", "carlos@email.com", null, null),Usuario.quantDeUsuarios());
-        
-        //infracoes[1] = (new Infracao("Excesso de velocidade", 150, 20220101, "Av. Paulista, SP", "Pendente", "INF001"));
-        //infracoes[2] = (new Infracao("Estacionamento proibido", 100, 20220105, "Rua Augusta, SP", "Pendente", "INF002"));
-        //infracoes[3] = (new Infracao("Uso de celular ao dirigir", 200, 20220110, "Av. Brasil, RJ", "Pendente", "INF003"));
-        
-        //cnhMatheus.addInfracao(infracoes.get(0));
-        //cnhJulia.addInfracao(infracoes.get(1));
-        //cnhCarlos.addInfracao(infracoes.get(2));
-    }
+	public int getnVeiculos() {
+		return nVeiculos;
+	}
+
+	public void setnVeiculos(int nVeiculos) {
+		this.nVeiculos = nVeiculos;
+	}
+
+	public AutomoveisComEixo[] getAutosComEixo() {
+		return autosComEixo;
+	}
+	
+	public AutomoveisComEixo getAutosComEixo(int i) {
+		return autosComEixo[i];
+	}
+
+	public void setAutoComEixo(AutomoveisComEixo[] autosComEixo) {
+		this.autosComEixo = autosComEixo;
+	}
+	
+	public void setAutoComEixo(int i, AutomoveisComEixo a) {
+		autosComEixo[i] = a;
+	}
+
+	public Caminhao[] getCaminhoes() {
+		return caminhoes;
+	}
+	
+	public Caminhao getCaminhao(int i) {
+		return caminhoes[i];
+	}
+
+	public void setCaminhoes(Caminhao[] caminhoes) {
+		this.caminhoes = caminhoes;
+	}
+	
+	public void setCaminhoes(int i, Caminhao c) {
+		caminhoes[i] = c;
+	}
+
+	public Moto[] getMotos() {
+		return motos;
+	}
+	
+	public Moto getMoto(int i) {
+		return motos[i];
+	}
+
+	public void setMotos(Moto[] motos) {
+		this.motos = motos;
+	}
+	
+	public void setMotos(int i, Moto m) {
+		motos[i] = m;
+	}
+
+	public Van[] getVans() {
+		return vans;
+	}
+	
+	public Van getVan(int i) {
+		return vans[i];
+	}
+
+	public void setVans(Van[] vans) {
+		this.vans = vans;
+	}
+	
+	public void setVans(int i, Van v) {
+		vans[i] = v;
+	}
+
+	public Carro[] getCarros() {
+		return carros;
+	}
+	
+	public Carro getCarros(int i) {
+		return carros[i];
+	}
+
+	public void setCarros(Carro[] carros) {
+		this.carros = carros;
+	}
+	
+	public void setCarros(int i, Carro c) {
+		carros[i] = c;
+	}
+
+	public int getnAutosComEixo() {
+		return nAutosComEixo;
+	}
+
+	public void setnAutosComEixo(int nAutosComEixo) {
+		this.nAutosComEixo = nAutosComEixo;
+	}
+
+	public int getnCaminhoes() {
+		return nCaminhoes;
+	}
+
+	public void setnCaminhoes(int nCaminhoes) {
+		this.nCaminhoes = nCaminhoes;
+	}
+
+	public int getnMotos() {
+		return nMotos;
+	}
+
+	public void setnMotos(int nMotos) {
+		this.nMotos = nMotos;
+	}
+
+	public int getnVans() {
+		return nVans;
+	}
+
+	public void setnVans(int nVans) {
+		this.nVans = nVans;
+	}
+
+	public int getnCarros() {
+		return nCarros;
+	}
+
+	public void setnCarros(int nCarros) {
+		this.nCarros = nCarros;
+	}
+	
+	public void NovosDados() {
+		for(int i = 0; i < 10; i++) {
+			String s = String.valueOf(i);
+			usuarios[i] = new Usuario("nome".concat(s),"cpf".concat(s),"sexo".concat(s),"email".concat(s));
+			cnhs[i] = new Cnh("categoria".concat(s),"ufEmissao".concat(s),"dataValidade".concat(s),
+					"dataEmissao".concat(s),i,"status".concat(s),"numCnh".concat(s));
+			
+			motos[i] = new Moto("modelo".concat(s),"placa".concat(s),"cor".concat(s),i,
+					"estado".concat(s),"marca".concat(s),i,i);
+			veiculos[i] = motos[i];
+			
+			autosComEixo[i] = new AutomoveisComEixo("modelo".concat(s),"placa".concat(s),"cor".concat(s),i,
+					"estado".concat(s),"marca".concat(s),i,i,"tipo".concat(s));
+			veiculos[i+10] = autosComEixo[i];
+			
+			carros[i] = new Carro("modelo".concat(s),"placa".concat(s),"cor".concat(s),i,
+					"estado".concat(s),"marca".concat(s),i,i);
+			veiculos[i+20] = carros[i];
+			
+			vans[i] = new Van("modelo".concat(s),"placa".concat(s),"cor".concat(s),i,
+					"estado".concat(s),"marca".concat(s),i,i,"tipo".concat(s));
+			veiculos[i+30] = vans[i];
+			
+			caminhoes[i] = new Caminhao("modelo".concat(s),"placa".concat(s),"cor".concat(s),i,
+					"estado".concat(s),"marca".concat(s),i,i,"tipo".concat(s));
+			veiculos[i+40] = caminhoes[i];
+			
+		}
+		nAutosComEixo = nCaminhoes = nCarros = nCnhs = nMotos = nUsuarios = nVans =10;
+		nVeiculos = 50;
+	}
 }
