@@ -18,6 +18,7 @@ public abstract class Veiculo {
 	}
 
 	
+	
 	//Gets
 	public String getModelo() {
 		return modelo;
