@@ -17,6 +17,7 @@ public abstract class Veiculo {
 		this.marca = marca;
 	}
 
+	
 	//Gets
 	public String getModelo() {
 		return modelo;
