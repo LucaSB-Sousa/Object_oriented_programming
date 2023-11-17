@@ -72,8 +72,5 @@ public abstract class Veiculo {
 		return "Veiculo [modelo=" + modelo + ", placa=" + placa + ", cor=" + cor + ", ano=" + ano + ", estado=" + estado
 				+ ", marca=" + marca + "]";
 	}
-	
-	
-	
-	
+
 }
