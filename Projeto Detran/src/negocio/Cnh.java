@@ -1,10 +1,8 @@
 package negocio;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.List;
 
 
 public class Cnh {
@@ -15,19 +13,17 @@ public class Cnh {
     private String dataEmissao;
     private int pontuacao;
     private String status;
-    private String numCnh;
-    private List<Infracao> infracoes = new ArrayList<>();
-
+    private static String numCnh;
 
     public Cnh(String categoria, String ufEmissao, String dataValidade, String dataEmissao, int pontuacao,
-               String status, String numCnh, List<Infracao> infracoes) {
+               String status, String numCnh) {
         this.categoria = categoria;
         this.ufEmissao = ufEmissao;
         this.dataValidade = dataValidade;
         this.dataEmissao = dataEmissao;
         this.pontuacao = pontuacao;
         this.status = status;
-        this.numCnh = numCnh;
+        Cnh.numCnh = numCnh;
     }
 
     public String getCategoria() {
@@ -54,23 +50,17 @@ public class Cnh {
         return status;
     }
 
-    public String getNumCnh() {
+    public static String getNumCnh() {
         return numCnh;
     }
-
-    public List<Infracao> getInfracoes() {
-        return infracoes;
-    }
-
-    public void addInfracao(Infracao infracao) {
-        this.infracoes.add(infracao);
-    }
-    public String obterDadosCnh(String categoria, String ufEmissao, String dataEmissao, String dataValidade,
-                                int pontuacao, String status, String numCnh) {
-        return "(" + categoria + ", " + ufEmissao + ", " + dataEmissao + ", " + dataValidade + pontuacao + status +
-                numCnh + ")";
-    }
-
+    
+    @Override
+	public String toString() {
+		return "Cnh [categoria=" + categoria + ", ufEmissao=" + ufEmissao + ", dataValidade=" + dataValidade
+				+ ", dataEmissao=" + dataEmissao + ", pontuacao=" + pontuacao + ", status=" + status + ", numCnh="
+				+ numCnh + "]";
+	}
+    
     public void renovarCnh(String numCnh, String dataValidade) throws Exception {
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         Date dateValidade = sdf.parse(dataValidade);
@@ -84,4 +74,5 @@ public class Cnh {
             dataValidade = sdf.format(dateValidade);
         }
     }
+    
 }

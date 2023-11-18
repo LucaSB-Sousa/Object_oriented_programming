@@ -6,36 +6,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Detran {
-    private List<Usuario> usuarios = new ArrayList<>();
     private Infracao infracao;
     private Cnh cnh;
     private Dados dados;
-
-
+    
     public Detran(Dados dados) {
         this.dados = dados;
     }
+    
+    public Cnh getCnh() {
+		return cnh;
+	}
 
-    public List<Usuario> getUsuarios() {
-        return usuarios;
-    }
-
-    public void adicionarUsuario(Usuario usuario) {
-        this.usuarios.add(usuario);
-    }
-
-    public void removerUsuario(Usuario usuario) {
-        this.usuarios.remove(usuario);
-    }
-
-    public Infracao getInfracao() {
-        return infracao;
-    }
-
-    public void setInfracao(Infracao infracao) {
-        this.infracao = infracao;
-    }
-
+	public void setCnh(Cnh cnh) {
+		this.cnh = cnh;
+	}
 
     public boolean autenticarDetran(String login, String senha) {
         return dados.getLoginDetran().equals(login) && dados.getSenhaDetran().equals(senha);
@@ -72,4 +57,5 @@ public class Detran {
             this.infracao.setStatus(novoStatus);
         }
     }
+
 }

@@ -1,31 +1,25 @@
 package negocio;
 
-import negocio.Veiculo;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Iterator;
-
 public class Usuario {
     private String nome;
     private String cpf;
     private String sexo;
     private String email;
     private Cnh cnh;
-    private  Veiculo Veiculo;
-    private final List<Infracao> infracoes = new ArrayList<>();
-    private static List<Usuario> usuarios = new ArrayList<>();
+    private Veiculo veiculo;
+    private static Veiculo[] veiculosPessoais;
+
+    public Usuario(String nome, String cpf, String sexo, String email, Cnh cnh) {
+		super();
+		this.nome = nome;
+		this.cpf = cpf;
+		this.sexo = sexo;
+		this.email = email;
+		this.cnh = cnh;
+	}
 
 
-    public Usuario(String nome, String cpf, String sexo, String email, Cnh cnh, negocio.Veiculo veiculo) {
-        this.nome = nome;
-        this.cpf = cpf;
-        this.sexo = sexo;
-        this.email = email;
-        this.cnh = cnh;
-        Veiculo = veiculo;
-    }
-
-    public String getNome() {
+	public String getNome() {
         return nome;
     }
 
@@ -64,72 +58,74 @@ public class Usuario {
     public void setCnh(Cnh cnh) {
         this.cnh = cnh;
     }
+    
+    public Veiculo getVeiculo() {
+		return veiculo;
+	}
 
-    public negocio.Veiculo getVeiculo() {
-        return Veiculo;
+	public void setVeiculo(Veiculo veiculo) {
+		this.veiculo = veiculo;
+	}
+
+	
+
+	public Veiculo[] getVeiculosPessoais() {
+		return veiculosPessoais;
+	}
+	
+	public Veiculo getVeiculosPessoais(int i) {
+		return veiculosPessoais[i];
+	}
+
+	public void setVeiculosPessoais(Veiculo[] veiculosPessoais) {
+		Usuario.veiculosPessoais = veiculosPessoais;
+	}
+
+
+	@Override
+	public String toString() {
+		return "Usuario [nome=" + nome + ", cpf=" + cpf + ", sexo=" + sexo + ", email=" + email + "]";
+	}
+    
+    
+    //Adicionar esses métodos a classe main
+    public void associarCnhAoUsuario(Cnh cnh) {
+    	if (cnh==null) {
+    		this.cnh = cnh;
+		} else {
+			System.out.println("O Usuario ja tem uma Cnh associada.");
+		}
+    	
     }
-
-    public void setVeiculo(negocio.Veiculo veiculo) {
-        Veiculo = veiculo;
+    
+    public void associarVeiculoAoUsuario(Veiculo veiculo) {
+    	this.veiculo = veiculo;
+    	adicionarVeiculoPessoal(veiculo);
     }
-
-    public void cadastrarConta(String nome, String cpf, String sexo, String email, Cnh cnh, negocio.Veiculo veiculo){
-
-    }
-
-    public String obterDadosUsuario(String nome, String cpf, String sexo, String email) {
-        return "(" + nome + ", " + cpf + ", " + sexo + ", " + email + ")";
-    }
-    public List<Infracao> obterInfracoesCnh() {
-        if (this.cnh != null) {
-            return this.cnh.getInfracoes();
+    
+    private static void adicionarVeiculoPessoal(Veiculo veiculo) {
+        if (veiculosPessoais == null) {
+        	veiculosPessoais = new Veiculo[1];
+        } else {
+            Veiculo[] novoVeiculosPessoais = new Veiculo[veiculosPessoais.length + 1];
+            System.arraycopy(veiculosPessoais, 0, novoVeiculosPessoais, 0, veiculosPessoais.length);
+            veiculosPessoais = novoVeiculosPessoais;
         }
-        return new ArrayList<>();
-    }
 
-    public Veiculo procurarVeiculo(String placa) {
-        if (this.Veiculo != null && this.Veiculo.getPlaca().equals(placa)) {
-            return this.Veiculo;
-        }
-        return null;
+        veiculosPessoais[veiculosPessoais.length - 1] = veiculo;
     }
-
-    public void removerVeiculo(Veiculo veiculo) {
-        if (this.Veiculo != null && this.Veiculo.equals(veiculo)) {
-            this.Veiculo = null;
-        }
-    }
-
-    public void transferirInfracao(Usuario outroUsuario, String idInfracao) {
-        Iterator<Infracao> iterator = this.infracoes.iterator();
-        while (iterator.hasNext()) {
-            Infracao infracao = iterator.next();
-            if (infracao.getId().equals(idInfracao)) {
-                outroUsuario.getCnh().addInfracao(infracao);
-                iterator.remove();
-                break;
-            }
-        }
-
-    }
-
-    public static Usuario obterDadosPorNome(String nome) {
-        for (Usuario usuario : usuarios) {
-            if (usuario.getNome().equalsIgnoreCase(nome)) {
-                return usuario;
-            }
-        }
-        return null;
-    }
-
-    public static Usuario obterUsuarioPorNomeOuCpf(String nomeOuCpf) {
-        for (Usuario usuario : usuarios) {
-            if (usuario.getNome().equalsIgnoreCase(nomeOuCpf) || usuario.getCpf().equals(nomeOuCpf)) {
-                return usuario;
-            }
-        }
-        return null;
-    }
+    
+    public void listarVeiculosPessoais(){
+    	if (veiculosPessoais == null) {
+			System.out.println("Nao ha veiculos cadastrados para este Usuario");
+		}
+    	else {
+    		for (int i = 0; i < veiculosPessoais.length; i++){
+    			System.out.println(i + " -> " + getVeiculosPessoais(i));
+    		}
+    	}
+    	
+}
 }
 
 
