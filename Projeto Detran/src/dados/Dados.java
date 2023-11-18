@@ -7,6 +7,8 @@ public class Dados {
 	private int nUsuarios = 0;
 	private Cnh[] cnhs ;
 	private int nCnhs = 0;
+	private Infracao[] infracoes;
+	private int nInfracoes;
 	
 	private Veiculo[] veiculos;
 	private int nVeiculos = 0;
@@ -25,6 +27,7 @@ public class Dados {
 	public Dados() {
 		usuarios = new Usuario[100];
 		cnhs = new Cnh[50];
+		infracoes = new Infracao[100];
 		veiculos = new Veiculo[50];
 		autosComEixo = new AutomoveisComEixo[50];
 		caminhoes = new Caminhao[50];
@@ -76,7 +79,7 @@ public class Dados {
 	public String[] getNumCnh() {
 		String[] s = new String[nCnhs];
 		for(int i = 0; i < nCnhs; i++) {
-			s[i] = cnhs[i].getNumCnh();
+			s[i] = Cnh.getNumCnh();
 		}
 		return s;
 	}
@@ -98,11 +101,31 @@ public class Dados {
 		this.nCnhs = nCnhs;
 	}
 
+	public Infracao[] getInfracoes() {
+		return infracoes;
+	}
+	
+	public Infracao getInfracoes(int i) {
+		return infracoes[i];
+	}
+
+	public void setInfracoes(Infracao[] infracoes) {
+		this.infracoes = infracoes;
+	}
+	
+	public void setInfracoes(int i, Infracao inf) {
+		infracoes[i] = inf;
+	}
+
+	public int getnInfracoes() {
+		return nInfracoes;
+	}
+	
 	public Veiculo[] getVeiculos() {
 		return veiculos;
 	}
 	
-	public Veiculo getVeiculo(int i) {
+	public Veiculo getVeiculos(int i) {
 		return veiculos[i];
 	}
 
@@ -245,9 +268,12 @@ public class Dados {
 	public void NovosDados() {
 		for(int i = 0; i < 10; i++) {
 			String s = String.valueOf(i);
-			usuarios[i] = new Usuario("nome".concat(s),"cpf".concat(s),"sexo".concat(s),"email".concat(s));
 			cnhs[i] = new Cnh("categoria".concat(s),"ufEmissao".concat(s),"dataValidade".concat(s),
 					"dataEmissao".concat(s),i,"status".concat(s),"numCnh".concat(s));
+			usuarios[i] = new Usuario("nome".concat(s),"cpf".concat(s),"sexo".concat(s),
+					"email".concat(s),cnhs[i]);
+			infracoes[i] = new Infracao("tipo".concat(s),i,"dataInfracao".concat(s),"local".concat(s),
+					"status".concat(s),"id".concat(s),cnhs[i]);
 			
 			motos[i] = new Moto("modelo".concat(s),"placa".concat(s),"cor".concat(s),i,
 					"estado".concat(s),"marca".concat(s),i,i);
@@ -270,7 +296,7 @@ public class Dados {
 			veiculos[i+40] = caminhoes[i];
 			
 		}
-		nAutosComEixo = nCaminhoes = nCarros = nCnhs = nMotos = nUsuarios = nVans =10;
+		nAutosComEixo = nCaminhoes = nCarros = nCnhs = nMotos = nUsuarios = nVans = nInfracoes =10;
 		nVeiculos = 50;
 	}
 }
