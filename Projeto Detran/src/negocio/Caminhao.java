@@ -1,7 +1,5 @@
 package negocio;
 
-import negocio.Veiculo;
-
 public class Caminhao extends Veiculo {
 	private int peso;
 	private int nPassageiros;
