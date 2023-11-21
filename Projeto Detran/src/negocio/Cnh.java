@@ -7,17 +7,17 @@ import java.util.Date;
 
 public class Cnh {
 
-    private String categoria;
+    private static String categoria;
     private String ufEmissao;
     private String dataValidade;
     private String dataEmissao;
-    private int pontuacao;
+    private double pontuacao;
     private String status;
     private static String numCnh;
 
-    public Cnh(String categoria, String ufEmissao, String dataValidade, String dataEmissao, int pontuacao,
+    public Cnh(String categoria, String ufEmissao, String dataValidade, String dataEmissao, double pontuacao,
                String status, String numCnh) {
-        this.categoria = categoria;
+        Cnh.categoria = categoria;
         this.ufEmissao = ufEmissao;
         this.dataValidade = dataValidade;
         this.dataEmissao = dataEmissao;
@@ -26,7 +26,7 @@ public class Cnh {
         Cnh.numCnh = numCnh;
     }
 
-    public String getCategoria() {
+    public static String getCategoria() {
         return categoria;
     }
 
@@ -42,7 +42,7 @@ public class Cnh {
         return dataEmissao;
     }
 
-    public int getPontuacao() {
+    public double getPontuacao() {
         return pontuacao;
     }
 
@@ -54,7 +54,11 @@ public class Cnh {
         return numCnh;
     }
     
-    @Override
+    public void setCategoria(String categoria) {
+		Cnh.categoria = categoria;
+	}
+
+	@Override
 	public String toString() {
 		return "Cnh [categoria=" + categoria + ", ufEmissao=" + ufEmissao + ", dataValidade=" + dataValidade
 				+ ", dataEmissao=" + dataEmissao + ", pontuacao=" + pontuacao + ", status=" + status + ", numCnh="

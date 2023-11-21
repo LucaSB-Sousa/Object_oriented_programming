@@ -5,17 +5,20 @@ public class Usuario {
     private String cpf;
     private String sexo;
     private String email;
-    private Cnh cnh;
+    private static Cnh cnh;
     private Veiculo veiculo;
     private static Veiculo[] veiculosPessoais;
+    private int numVeiculos;
 
-    public Usuario(String nome, String cpf, String sexo, String email, Cnh cnh) {
+    public Usuario(String nome, String cpf, String sexo, String email, Cnh cnh,Veiculo[] veiculosPessoais) {
 		super();
 		this.nome = nome;
 		this.cpf = cpf;
 		this.sexo = sexo;
 		this.email = email;
-		this.cnh = cnh;
+		Usuario.cnh = cnh;
+		Usuario.veiculosPessoais = new Veiculo[50];
+		this.numVeiculos =0;
 	}
 
 
@@ -51,12 +54,12 @@ public class Usuario {
         this.email = email;
     }
 
-    public Cnh getCnh() {
+    public static Cnh getCnh() {
         return cnh;
     }
 
     public void setCnh(Cnh cnh) {
-        this.cnh = cnh;
+        Usuario.cnh = cnh;
     }
     
     public Veiculo getVeiculo() {
@@ -80,10 +83,21 @@ public class Usuario {
 	public void setVeiculosPessoais(Veiculo[] veiculosPessoais) {
 		Usuario.veiculosPessoais = veiculosPessoais;
 	}
+	
+	public int getNumVeiculos() {
+		return numVeiculos;
+	}
 
+	public void setNumVeiculos(int numVeiculos) {
+		this.numVeiculos = numVeiculos;
+	}
 
 	@Override
 	public String toString() {
+		if(getCnh()!= null){
+			return "Usuario [nome=" + nome + ", cpf=" + cpf + ", sexo=" + sexo + ", email=" + email + 
+					", Numero da Cnh = " + Cnh.getNumCnh() + "]";
+		}
 		return "Usuario [nome=" + nome + ", cpf=" + cpf + ", sexo=" + sexo + ", email=" + email + "]";
 	}
     
@@ -91,7 +105,7 @@ public class Usuario {
     //Adicionar esses métodos a classe main
     public void associarCnhAoUsuario(Cnh cnh) {
     	if (cnh==null) {
-    		this.cnh = cnh;
+    		Usuario.cnh = cnh;
 		} else {
 			System.out.println("O Usuario ja tem uma Cnh associada.");
 		}
@@ -99,11 +113,15 @@ public class Usuario {
     }
     
     public void associarVeiculoAoUsuario(Veiculo veiculo) {
-    	this.veiculo = veiculo;
-    	adicionarVeiculoPessoal(veiculo);
+    	if(getCnh()==null) {
+    		System.out.println("O usuario não tem uma cnh associada");
+    	}
+    	else {
+    		adicionarVeiculoPessoal(veiculo);
+    	}
     }
     
-    private static void adicionarVeiculoPessoal(Veiculo veiculo) {
+    /*private static void adicionarVeiculoPessoal(Veiculo veiculo) {
         if (veiculosPessoais == null) {
         	veiculosPessoais = new Veiculo[1];
         } else {
@@ -114,18 +132,40 @@ public class Usuario {
 
         veiculosPessoais[veiculosPessoais.length - 1] = veiculo;
     }
+    */
     
     public void listarVeiculosPessoais(){
-    	if (veiculosPessoais == null) {
+    	if (naoPossuiVeiculos()) {
 			System.out.println("Nao ha veiculos cadastrados para este Usuario");
 		}
     	else {
     		for (int i = 0; i < veiculosPessoais.length; i++){
-    			System.out.println(i + " -> " + getVeiculosPessoais(i));
+    			if(getVeiculosPessoais(i)!=null){
+    				System.out.println(i + " -> " + getVeiculosPessoais(i));
+    			}
     		}
     	}
     	
-}
+    }
+    
+    public void adicionarVeiculoPessoal(Veiculo veiculo) {
+        if (numVeiculos > 50) {
+            System.out.println("Limite de veiculos excedido");
+        }
+        else {
+        	veiculosPessoais[numVeiculos] = veiculo;
+        	setNumVeiculos(numVeiculos+1);
+        }
+    }
+
+    public boolean naoPossuiVeiculos() {
+        for (Veiculo veiculo : veiculosPessoais) {
+            if (veiculo != null) {
+                return false; // Se encontrar pelo menos um veículo, retorna falso
+            }
+        }
+        return true; // Se nenhum veículo for encontrado, retorna verdadeiro
+    }
 }
 
 

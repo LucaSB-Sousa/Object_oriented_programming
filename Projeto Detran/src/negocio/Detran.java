@@ -2,16 +2,13 @@ package negocio;
 
 import dados.Dados;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Detran {
-    private Infracao infracao;
+    //private Infracao infracao;
     private Cnh cnh;
-    private Dados dados;
+    private static Dados dados = new Dados();
     
     public Detran(Dados dados) {
-        this.dados = dados;
+        Detran.dados = dados;
     }
     
     public Cnh getCnh() {
@@ -27,13 +24,11 @@ public class Detran {
     }
 
     public void adicionarInfracaoAoUsuario(Usuario usuario, Infracao infracao){
-        if (usuario != null && usuario.getCnh() != null) {
-            usuario.getCnh().addInfracao(infracao);
-        }
+        
     }
 
     public void deletarUsuario(Usuario usuario) {
-        this.usuarios.remove(usuario);
+        
     }
 
     public void adicionarCnhAoUsuario(Usuario usuario, Cnh cnh) {
@@ -49,13 +44,12 @@ public class Detran {
     }
 
     public void editarInfracao(String id, String novoTipo, int novoValor, int novaDataInfracao, String novoLocal, String novoStatus) {
-        if (this.infracao != null && this.infracao.getId().equals(id)) {
-            this.infracao.setTipo(novoTipo);
-            this.infracao.setValor(novoValor);
-            this.infracao.setDataInfracao(novaDataInfracao);
-            this.infracao.setLocal(novoLocal);
-            this.infracao.setStatus(novoStatus);
-        }
+        
     }
+
+	public static Infracao cadastrarInfracao(String[] infracaoData) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 }
