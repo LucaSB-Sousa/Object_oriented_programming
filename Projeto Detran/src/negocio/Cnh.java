@@ -53,14 +53,14 @@ public class Cnh {
     public static String getNumCnh() {
         return numCnh;
     }
-    
+
     @Override
-	public String toString() {
-		return "Cnh [categoria=" + categoria + ", ufEmissao=" + ufEmissao + ", dataValidade=" + dataValidade
-				+ ", dataEmissao=" + dataEmissao + ", pontuacao=" + pontuacao + ", status=" + status + ", numCnh="
-				+ numCnh + "]";
-	}
-    
+    public String toString() {
+        return "Cnh [categoria=" + categoria + ", ufEmissao=" + ufEmissao + ", dataValidade=" + dataValidade
+                + ", dataEmissao=" + dataEmissao + ", pontuacao=" + pontuacao + ", status=" + status + ", numCnh="
+                + numCnh + "]";
+    }
+
     public void renovarCnh(String numCnh, String dataValidade) throws Exception {
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         Date dateValidade = sdf.parse(dataValidade);
@@ -74,5 +74,5 @@ public class Cnh {
             dataValidade = sdf.format(dateValidade);
         }
     }
-    
+
 }

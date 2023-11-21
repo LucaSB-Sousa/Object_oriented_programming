@@ -1,79 +1,77 @@
 package negocio;
 
 public abstract class Veiculo {
-	protected String modelo;
-	protected String placa;
-	protected String cor;
-	protected int ano;
-	protected String estado;
-	protected String marca;
-	
-	public Veiculo(String modelo, String placa, String cor, int ano, String estado, String marca) {
-		this.modelo = modelo;
-		this.placa = placa;
-		this.cor = cor;
-		this.ano = ano;
-		this.estado = estado;
-		this.marca = marca;
-	}
+    protected String modelo;
+    protected String placa;
+    protected String cor;
+    protected int ano;
+    protected String estado;
+    protected String marca;
 
-	//Gets
-	public String getModelo() {
-		return modelo;
-	}
+    public Veiculo(String modelo, String placa, String cor, int ano, String estado, String marca) {
+        this.modelo = modelo;
+        this.placa = placa;
+        this.cor = cor;
+        this.ano = ano;
+        this.estado = estado;
+        this.marca = marca;
+    }
 
-	public String getPlaca() {
-		return placa;
-	}
+    //Gets
+    public String getModelo() {
+        return modelo;
+    }
 
-	public String getCor() {
-		return cor;
-	}
+    public String getPlaca() {
+        return placa;
+    }
 
-	public int getAno() {
-		return ano;
-	}
+    public String getCor() {
+        return cor;
+    }
 
-	public String getEstado() {
-		return estado;
-	}
+    public int getAno() {
+        return ano;
+    }
 
-	public String getMarca() {
-		return marca;
-	}
+    public String getEstado() {
+        return estado;
+    }
 
-	
-	//Sets
-	public void setModelo(String modelo) {
-		this.modelo = modelo;
-	}
+    public String getMarca() {
+        return marca;
+    }
 
-	public void setPlaca(String placa) {
-		this.placa = placa;
-	}
 
-	public void setCor(String cor) {
-		this.cor = cor;
-	}
+    //Sets
+    public void setModelo(String modelo) {
+        this.modelo = modelo;
+    }
 
-	public void setAno(int ano) {
-		this.ano = ano;
-	}
+    public void setPlaca(String placa) {
+        this.placa = placa;
+    }
 
-	public void setEstado(String estado) {
-		this.estado = estado;
-	}
+    public void setCor(String cor) {
+        this.cor = cor;
+    }
 
-	public void setMarca(String marca) {
-		this.marca = marca;
-	}
+    public void setAno(int ano) {
+        this.ano = ano;
+    }
 
-	public String obterDadosVeiculo() {
-		return "Veiculo [modelo=" + modelo + ", placa=" + placa + ", cor=" + cor + ", ano=" + ano + ", estado=" + estado
-				+ ", marca=" + marca + "]";
-	}
-	
-	
-	
-	
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+
+    public void setMarca(String marca) {
+        this.marca = marca;
+    }
+
+    public String obterDadosVeiculo() {
+        return "Veiculo [modelo=" + modelo + ", placa=" + placa + ", cor=" + cor + ", ano=" + ano + ", estado=" + estado
+                + ", marca=" + marca + "]";
+    }
+
+
 }

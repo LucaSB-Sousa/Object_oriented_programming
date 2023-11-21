@@ -9,7 +9,7 @@ public class Infracao {
     private String id;
     private Cnh cnh;
 
-    public Infracao(String tipo, double valor, String dataInfracao, String local, String status, String id,Cnh cnh) {
+    public Infracao(String tipo, double valor, String dataInfracao, String local, String status, String id, Cnh cnh) {
         this.tipo = tipo;
         this.valor = valor;
         this.dataInfracao = dataInfracao;
@@ -67,19 +67,19 @@ public class Infracao {
         this.id = id;
     }
 
-	public Cnh getCnh() {
-		return cnh;
-	}
+    public Cnh getCnh() {
+        return cnh;
+    }
 
-	public void setCnh(Cnh cnh) {
-		this.cnh = cnh;
-	}
+    public void setCnh(Cnh cnh) {
+        this.cnh = cnh;
+    }
 
-	@Override
-	public String toString() {
-		return "Infracao [tipo=" + tipo + ", valor=" + valor + ", dataInfracao=" + dataInfracao + ", local=" + local
-				+ ", status=" + status + ", id=" + id + ", cnh=" + Cnh.getNumCnh() + "]";
-	}
+    @Override
+    public String toString() {
+        return "Infracao [tipo=" + tipo + ", valor=" + valor + ", dataInfracao=" + dataInfracao + ", local=" + local
+                + ", status=" + status + ", id=" + id + ", cnh=" + Cnh.getNumCnh() + "]";
+    }
 
-	
+
 }
