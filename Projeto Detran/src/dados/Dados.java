@@ -3,14 +3,17 @@ package dados;
 import negocio.*;
 
 public class Dados {
-	private Usuario[] usuarios;
-	private int nUsuarios = 0;
-	private Cnh[] cnhs ;
-	private int nCnhs = 0;
+	private final String loginDetran = "Detran";
+	private final String senhaDetran = "1234";
+
+	private static Usuario[] usuarios;
+	private static int nUsuarios = 0;
+	private static Cnh[] cnhs ;
+	private static int nCnhs = 0;
 	private Infracao[] infracoes;
 	private int nInfracoes;
 	
-	private Veiculo[] veiculos;
+	private static Veiculo[] veiculos;
 	private int nVeiculos = 0;
 	private AutomoveisComEixo[] autosComEixo;
 	private int nAutosComEixo;
@@ -26,24 +29,51 @@ public class Dados {
 	
 	public Dados() {
 		usuarios = new Usuario[100];
-		cnhs = new Cnh[50];
+		cnhs = new Cnh[100];
 		infracoes = new Infracao[100];
-		veiculos = new Veiculo[50];
-		autosComEixo = new AutomoveisComEixo[50];
-		caminhoes = new Caminhao[50];
-		motos = new Moto[50];
-		carros = new Carro[50];
-		vans = new Van[50];
+		veiculos = new Veiculo[2500];
+		autosComEixo = new AutomoveisComEixo[500];
+		caminhoes = new Caminhao[500];
+		motos = new Moto[500];
+		carros = new Carro[500];
+		vans = new Van[500];
 	}
 	
-	public Usuario[] getUsuarios() {
+	public String getLoginDetran() {return loginDetran;}
+    public String getSenhaDetran() {return senhaDetran;}
+	
+	
+	public static Usuario[] getUsuarios() {
 		return usuarios;
 	}
 	
-	public Usuario getUsuarios(int i) {
+	public static Usuario getUsuarios(int i) {
 		return usuarios[i];
 	}
-
+	
+	public static boolean buscarUsuarioPorCpf(String cpf) {
+		Usuario volta = null;
+		for (int i = 0; i < Dados.getnUsuarios(); i++) {
+			if (Dados.getUsuarios(i).getCpf().equals(cpf) & Dados.getUsuarios(i)!= null) {
+				volta = Dados.getUsuarios(i);
+				System.out.println(volta);
+				return true;
+			}
+		}
+		System.out.println("Usuario nao encontrado");
+		return false;
+	}
+	
+	public static Usuario obterUsuarioPorNomeOuCpf(String identificador) {
+		Usuario retorno = null;
+		for (int i = 0; i < nUsuarios; i++) {
+			if (Dados.getUsuarios(i).getNome().equals(identificador) || Dados.getUsuarios(i).getCpf().equals(identificador)) {
+				retorno = usuarios[i];
+			}
+		}
+		return retorno;
+	}
+	
 	public String[] getNomeUsuarios() {
 		String[] s = new String[nUsuarios];
 		for(int i = 0; i < nUsuarios; i++) {
@@ -53,22 +83,22 @@ public class Dados {
 	}
 	
 	public void setUsuarios(Usuario[] usuarios) {
-		this.usuarios = usuarios;
+		Dados.usuarios = usuarios;
 	}
 	
 	public void setAluno(int i, Usuario a) {
 		usuarios[i] = a;
 	}
 
-	public int getnUsuarios() {
+	public static int getnUsuarios() {
 		return nUsuarios;
 	}
 
-	public void setnUsuarios(int nUsuarios) {
-		this.nUsuarios = nUsuarios;
+	public static void setnUsuarios(int nUsuarios) {
+		Dados.nUsuarios = nUsuarios;
 	}
 
-	public Cnh[] getCnhs() {
+	public static Cnh[] getCnhs() {
 		return cnhs;
 	}
 	
@@ -86,19 +116,19 @@ public class Dados {
 
 
 	public void setCnhs(Cnh[] cnhs) {
-		this.cnhs = cnhs;
+		Dados.cnhs = cnhs;
 	}
 	
 	public void setCnh(int i, Cnh c) {
 		cnhs[i] = c;
 	}
 
-	public int getnCnhs() {
+	public static int getnCnhs() {
 		return nCnhs;
 	}
 
-	public void setnCnhs(int nCnhs) {
-		this.nCnhs = nCnhs;
+	public static void setnCnhs(int nCnhs) {
+		Dados.nCnhs = nCnhs;
 	}
 
 	public Infracao[] getInfracoes() {
@@ -125,12 +155,12 @@ public class Dados {
 		return veiculos;
 	}
 	
-	public Veiculo getVeiculos(int i) {
+	public static Veiculo getVeiculos(int i) {
 		return veiculos[i];
 	}
 
 	public void setVeiculo(Veiculo[] veiculos) {
-		this.veiculos = veiculos;
+		Dados.veiculos = veiculos;
 	}
 	
 	public void setVeiculo(int i, Veiculo v) {
@@ -271,7 +301,7 @@ public class Dados {
 			cnhs[i] = new Cnh("categoria".concat(s),"ufEmissao".concat(s),"dataValidade".concat(s),
 					"dataEmissao".concat(s),i,"status".concat(s),"numCnh".concat(s));
 			usuarios[i] = new Usuario("nome".concat(s),"cpf".concat(s),"sexo".concat(s),
-					"email".concat(s),cnhs[i]);
+					"email".concat(s),cnhs[i],null);
 			infracoes[i] = new Infracao("tipo".concat(s),i,"dataInfracao".concat(s),"local".concat(s),
 					"status".concat(s),"id".concat(s),cnhs[i]);
 			
@@ -296,6 +326,14 @@ public class Dados {
 			veiculos[i+40] = caminhoes[i];
 			
 		}
+		//Cada usuario recebe um tipo de veiculo
+		for (int i = 0; i < 10; i++) {
+            usuarios[i].associarVeiculoAoUsuario(veiculos[i]); // Moto
+            usuarios[i].associarVeiculoAoUsuario(veiculos[i+10]); // Automóvel com Eixo
+            usuarios[i].associarVeiculoAoUsuario(veiculos[i+20]); // Carro
+            usuarios[i].associarVeiculoAoUsuario(veiculos[i+30]); // Van
+            usuarios[i].associarVeiculoAoUsuario(veiculos[i+40]); // Caminhão
+        }
 		nAutosComEixo = nCaminhoes = nCarros = nCnhs = nMotos = nUsuarios = nVans = nInfracoes =10;
 		nVeiculos = 50;
 	}
