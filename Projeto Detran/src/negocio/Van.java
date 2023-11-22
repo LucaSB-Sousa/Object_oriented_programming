@@ -1,51 +1,51 @@
 package negocio;
 
 public class Van extends Veiculo {
-    private int peso;
-    private int nPassageiros;
-    private String tipo;
+	private int peso;
+	private int nPassageiros;
+	private String tipo;
+	
+	public Van(String modelo, String placa, String cor, int ano, String estado,
+			String marca,int peso, int nPassageiros, String tipo) {
+		
+		super(modelo,placa,cor,ano,estado,marca);
+		this.peso = peso;
+		this.nPassageiros = nPassageiros;
+		this.tipo = tipo;
+	}
 
-    public Van(String modelo, String placa, String cor, int ano, String estado,
-               String marca, int peso, int nPassageiros, String tipo) {
+	//Gets	
+	public int getPeso() {
+		return peso;
+	}
 
-        super(modelo, placa, cor, ano, estado, marca);
-        this.peso = peso;
-        this.nPassageiros = nPassageiros;
-        this.tipo = tipo;
-    }
+	public int getnPassageiros() {
+		return nPassageiros;
+	}
 
-    //Gets
-    public int getPeso() {
-        return peso;
-    }
+	public String getTipo() {
+		return tipo;
+	}
 
-    public int getnPassageiros() {
-        return nPassageiros;
-    }
+	//Sets	
+	public void setPeso(int peso) {
+		this.peso = peso;
+	}
 
-    public String getTipo() {
-        return tipo;
-    }
+	public void setnPassageiros(int nPassageiros) {
+		this.nPassageiros = nPassageiros;
+	}
 
-    //Sets
-    public void setPeso(int peso) {
-        this.peso = peso;
-    }
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
+	}
 
-    public void setnPassageiros(int nPassageiros) {
-        this.nPassageiros = nPassageiros;
-    }
-
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
-    }
-
-    @Override
-    public String toString() {
-        return "Van [peso=" + peso + ", nPassageiros=" + nPassageiros + ", tipo=" + tipo + ", modelo=" + modelo
-                + ", placa=" + placa + ", cor=" + cor + ", ano=" + ano + ", estado=" + estado + ", marca=" + marca
-                + "]";
-    }
-
-
+	@Override
+	public String toString() {
+		return "Van [peso=" + peso + ", nPassageiros=" + nPassageiros + ", tipo=" + tipo + ", modelo=" + modelo
+				+ ", placa=" + placa + ", cor=" + cor + ", ano=" + ano + ", estado=" + estado + ", marca=" + marca
+				+ "]";
+	}
+	
+	
 }

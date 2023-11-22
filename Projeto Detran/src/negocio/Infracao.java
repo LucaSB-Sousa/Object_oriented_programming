@@ -5,18 +5,19 @@ public class Infracao {
     private double valor;
     private String dataInfracao;
     private String local;
-    private String status;
+    private static boolean status;
     private String id;
-    private Cnh cnh;
+    private static Cnh cnh;
+	public static int numInfracoes;
 
-    public Infracao(String tipo, double valor, String dataInfracao, String local, String status, String id, Cnh cnh) {
+    public Infracao(String tipo, double valor, String dataInfracao, String local, boolean status, String id,Cnh cnh) {
         this.tipo = tipo;
         this.valor = valor;
         this.dataInfracao = dataInfracao;
         this.local = local;
-        this.status = status;
+        Infracao.status = status;
         this.id = id;
-        this.cnh = cnh;
+        Infracao.cnh = cnh;
     }
 
     public String getTipo() {
@@ -51,12 +52,12 @@ public class Infracao {
         this.local = local;
     }
 
-    public String getStatus() {
+    public boolean getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    public static void setStatus(boolean status) {
+        Infracao.status = status;
     }
 
     public String getId() {
@@ -67,19 +68,19 @@ public class Infracao {
         this.id = id;
     }
 
-    public Cnh getCnh() {
-        return cnh;
-    }
+	public Cnh getCnh() {
+		return cnh;
+	}
 
-    public void setCnh(Cnh cnh) {
-        this.cnh = cnh;
-    }
+	public void setCnh(Cnh cnh) {
+		Infracao.cnh = cnh;
+	}
 
-    @Override
-    public String toString() {
-        return "Infracao [tipo=" + tipo + ", valor=" + valor + ", dataInfracao=" + dataInfracao + ", local=" + local
-                + ", status=" + status + ", id=" + id + ", cnh=" + Cnh.getNumCnh() + "]";
-    }
+	@Override
+	public String toString() {
+		return "Infracao [tipo=" + tipo + ", valor=" + valor + ", dataInfracao=" + dataInfracao + ", local=" + local
+				+ ", status=" + status + ", id=" + id + ", cnh=" + Cnh.getNumCnh() + "]";
+	}
 
-
+	
 }
