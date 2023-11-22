@@ -61,7 +61,17 @@ public class Dados {
         System.out.println("Usuario nao encontrado");
         return false;
     }
-
+    public static boolean buscarCnh(String numeroCnh){
+        Cnh numero = null;
+        for (int i= 0; i < Dados.getnCnhs(); i++){
+            if (cnhs[i].getNumCnh().equals(numeroCnh) & Dados.getCnhs(i) != null){
+                numero = Dados.getCnhs(i);
+                System.out.println(numero);
+                return true;
+            }
+        }
+        return false;
+    }
     public static Usuario obterUsuarioPorNomeOuCpf(String identificador) {
         Usuario retorno = null;
         for (int i = 0; i < nUsuarios; i++) {
@@ -107,7 +117,7 @@ public class Dados {
     public String[] getNumCnh() {
         String[] s = new String[nCnhs];
         for (int i = 0; i < nCnhs; i++) {
-            s[i] = Cnh.getNumCnh();
+            s[i] = cnhs[i].getNumCnh();
         }
         return s;
     }

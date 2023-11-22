@@ -99,32 +99,31 @@ public class Main {
                         System.out.println("Dados recebidos");
                         System.out.println("--------------------------");
                         System.out.println("Você ja tem uma Cnh?");
-                        do {
-                            System.out.println("--------------------------");
-                            System.out.println("1. Nao");
-                            System.out.println("2. Sim");
-                            System.out.println("--------------------------");
-                            escolhaUsuario = scanner.nextInt();
-                            scanner.nextLine();
 
-                            switch (escolhaUsuario) {
-                                case 1:
-                                    cadastrarContaSemCnh(nome, cpf, sexo, email);
-                                    perfilUsuario(scanner);
-                                case 2:
-                                    System.out.println("Informe os dados da cnh:");
-                                    cadastrarContaComCnh(nome, cpf, sexo, email);
-                                    perfilUsuario(scanner);
-                                default:
-                                    System.out.println("Opção inválida.");
-                                    break;
-                            }
-                        } while (escolhaUsuario != 2);
+                        System.out.println("--------------------------");
+                        System.out.println("1. Nao");
+                        System.out.println("2. Sim");
+                        System.out.println("--------------------------");
+                        escolhaUsuario = scanner.nextInt();
+                        scanner.nextLine();
+
+                        switch (escolhaUsuario) {
+                            case 1:
+                                cadastrarContaSemCnh(nome, cpf, sexo, email);
+                                break;
+                            case 2:
+                                System.out.println("Informe os dados da cnh:");
+                                cadastrarContaComCnh(nome, cpf, sexo, email);
+                                break;
+                            default:
+                                System.out.println("Opção inválida.");
+                                break;
+                        } break;
 
                     case 2:
                         System.out.println("Informe o cpf do usuario:");
                         String codigo = scanner.nextLine();
-                        Dados.buscarUsuarioPorCpf(codigo);
+                        Dados.buscarCnh(codigo);
                         break;
 
                     case 3:
@@ -328,14 +327,14 @@ public class Main {
                     case 6:
                         System.out.println("Listando todas as CNHs...");
                         for (Cnh cnh : dados.getCnhs()) {
-                            if (cnh != null){
+                            if (cnh != null) {
                                 System.out.println("Categoria: " + cnh.getCategoria());
                                 System.out.println("UF Emissão: " + cnh.getUfEmissao());
                                 System.out.println("Data Emissão: " + cnh.getDataEmissao());
                                 System.out.println("Data Validade: " + cnh.getDataValidade());
                                 System.out.println("Pontuação: " + cnh.getPontuacao());
                                 System.out.println("Status: " + cnh.getStatus());
-                                System.out.println("Número CNH: " + Cnh.getNumCnh());
+                                System.out.println("Número CNH: " + cnh.getNumCnh());
                                 System.out.println("--------------------------");
                             }
                         }
@@ -423,10 +422,10 @@ public class Main {
             System.out.println(i + " -> " + Dados.getCnhs()[i].toString());
     }
 
-    public static void listarCnhsPorNumero() {
-        for (int i = 0; i < Dados.getnCnhs(); i++)
-            System.out.println(i + " -> " + Cnh.getNumCnh());
-    }
+//    public static void listarCnhsPorNumero() {
+//        for (int i = 0; i < Dados.getnCnhs(); i++)
+//            System.out.println(i + " -> " + cnh.getNumCnh());
+//    }
 
     public static void listarInfracoesDoUsuario(Usuario usuario) {
         int x = 0;

@@ -79,7 +79,7 @@ public class Infracao {
 	@Override
 	public String toString() {
 		return "Infracao [tipo=" + tipo + ", valor=" + valor + ", dataInfracao=" + dataInfracao + ", local=" + local
-				+ ", status=" + status + ", id=" + id + ", cnh=" + Cnh.getNumCnh() + "]";
+				+ ", status=" + status + ", id=" + id + ", cnh=" + cnh.getNumCnh() + "]";
 	}
 
 	

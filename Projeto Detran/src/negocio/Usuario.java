@@ -98,7 +98,7 @@ public class Usuario {
 	public String toString() {
 		if(getCnh()!= null){
 			return "Usuario [nome=" + nome + ", cpf=" + cpf + ", sexo=" + sexo + ", email=" + email + 
-					", Numero da Cnh = " + Cnh.getNumCnh() + "]";
+					", Numero da Cnh = " + cnh.getNumCnh() + "]";
 		}
 		return "Usuario [nome=" + nome + ", cpf=" + cpf + ", sexo=" + sexo + ", email=" + email + "]";
 	}
