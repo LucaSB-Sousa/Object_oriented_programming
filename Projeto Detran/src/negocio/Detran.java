@@ -6,29 +6,25 @@ public class Detran {
     //private Infracao infracao;
     private Cnh cnh;
     private static Dados dados = new Dados();
-    
+
     public Detran(Dados dados) {
         Detran.dados = dados;
     }
-    
+
     public Cnh getCnh() {
-		return cnh;
-	}
-
-	public void setCnh(Cnh cnh) {
-		this.cnh = cnh;
-	}
-
-    public boolean autenticarDetran(String login, String senha) {
-        return dados.getLoginDetran().equals(login) && dados.getSenhaDetran().equals(senha);
+        return cnh;
     }
 
-    public void adicionarInfracaoAoUsuario(Usuario usuario, Infracao infracao){
-        
+    public void setCnh(Cnh cnh) {
+        this.cnh = cnh;
+    }
+
+    public void adicionarInfracaoAoUsuario(Usuario usuario, Infracao infracao) {
+
     }
 
     public void deletarUsuario(Usuario usuario) {
-        
+
     }
 
     public void adicionarCnhAoUsuario(Usuario usuario, Cnh cnh) {
@@ -44,12 +40,12 @@ public class Detran {
     }
 
     public void editarInfracao(String id, String novoTipo, int novoValor, int novaDataInfracao, String novoLocal, String novoStatus) {
-        
+
     }
 
-	public static Infracao cadastrarInfracao(String[] infracaoData) {
-		return null;
-	}
+    public static Infracao cadastrarInfracao(String[] infracaoData) {
+        return null;
+    }
 	
 	/*public static void removerVeiculo(Veiculo veiculo,Usuario usuario) {
 		int n = Usuario.getVeiculosPessoais().length;
@@ -90,5 +86,5 @@ public class Detran {
 	        System.out.println("Usuario nao tem veiculos associados.");
 	    }
 	}*/
-	
+
 }

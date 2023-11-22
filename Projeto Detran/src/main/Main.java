@@ -270,31 +270,49 @@ public class Main {
                         }
                         break;
                     case 4:
-                        listarUsuarios();
+                        System.out.println("Listando todos os usuários...");
+                        for (Usuario usuario : dados.getUsuarios1()) {
+                            if (usuario != null) {
+                                System.out.println("--------------------------");
+                                System.out.println("Nome: " + usuario.getNome());
+                                System.out.println("Cpf: " + usuario.getCpf());
+                                System.out.println("E-mail: " + usuario.getEmail());
+                                System.out.println("Sexo: " + usuario.getSexo());
+                                System.out.println("--------------------------");
+                            }
+                        }
+                        System.out.println();
+
+                        //listarUsuarios();
                         break;
                     case 5:
                         System.out.println("Listando todas as infrações...");
                         for (Infracao infracao : dados.getInfracoes()) {
-                            System.out.println("Tipo: " + infracao.getTipo());
-                            System.out.println("Valor: " + infracao.getValor());
-                            System.out.println("Data: " + infracao.getDataInfracao());
-                            System.out.println("Local: " + infracao.getLocal());
-                            System.out.println("Status: " + infracao.getStatus());
-                            System.out.println("ID: " + infracao.getId());
-                            System.out.println("--------------------------");
+                            if (infracao != null) {
+                                System.out.println("--------------------------");
+                                System.out.println("Tipo: " + infracao.getTipo());
+                                System.out.println("Valor: " + infracao.getValor());
+                                System.out.println("Data: " + infracao.getDataInfracao());
+                                System.out.println("Local: " + infracao.getLocal());
+                                System.out.println("Status: " + infracao.getStatus());
+                                System.out.println("ID: " + infracao.getId());
+                                System.out.println("--------------------------");
+                            }
                         }
                         break;
                     case 6:
                         System.out.println("Listando todas as CNHs...");
                         for (Cnh cnh : dados.getCnhs()) {
-                            System.out.println("Categoria: " + cnh.getCategoria());
-                            System.out.println("UF Emissão: " + cnh.getUfEmissao());
-                            System.out.println("Data Emissão: " + cnh.getDataEmissao());
-                            System.out.println("Data Validade: " + cnh.getDataValidade());
-                            System.out.println("Pontuação: " + cnh.getPontuacao());
-                            System.out.println("Status: " + cnh.getStatus());
-                            System.out.println("Número CNH: " + Cnh.getNumCnh());
-                            System.out.println("--------------------------");
+                            if (cnh != null){
+                                System.out.println("Categoria: " + cnh.getCategoria());
+                                System.out.println("UF Emissão: " + cnh.getUfEmissao());
+                                System.out.println("Data Emissão: " + cnh.getDataEmissao());
+                                System.out.println("Data Validade: " + cnh.getDataValidade());
+                                System.out.println("Pontuação: " + cnh.getPontuacao());
+                                System.out.println("Status: " + cnh.getStatus());
+                                System.out.println("Número CNH: " + Cnh.getNumCnh());
+                                System.out.println("--------------------------");
+                            }
                         }
                         break;
                     case 7:
