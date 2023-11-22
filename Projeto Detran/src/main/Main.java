@@ -58,9 +58,10 @@ public class Main {
             System.out.println("1. Cadastrar conta");
             System.out.println("2. Obter dados do usuario");
             System.out.println("3. Obter dados dos veiculos de um usuario");
-            System.out.println("4. Ir para a parte de veiculos");
-            System.out.println("5. Ir para a parte Infracoes");
-            System.out.println("6. Voltar ao menu principal\n");
+            System.out.println("4. Editar um Usuario.");
+            System.out.println("5. Ir para a parte de veiculos");
+            System.out.println("6. Ir para a parte Infracoes");
+            System.out.println("7. Voltar ao menu principal\n");
             System.out.println("--------------------------");
 
             if (scanner.hasNextInt()) {
@@ -136,14 +137,38 @@ public class Main {
                             System.out.println("Usuario nao encontrado.");
                         }
                         break;
-
                     case 4:
-                        perfilVeiculo(scanner);
+                    	System.out.println("Informe o cpf do usuario:");
+                    	String teste = scanner.nextLine();
+                    	Usuario User = Dados.obterUsuarioPorNomeOuCpf(teste);
+                        if (User != null) {
+                        	System.out.println("\n--------------------------");
+                    		System.out.println("Escolha o dado a ser editado.\n");
+                            System.out.println("1. Nome");
+                            System.out.println("2. Email");
+                            System.out.println("3. Sexo");
+                            System.out.println("--------------------------\n");
+                            int choice = scanner.nextInt();
+                            if(choice==1 || choice==2 || choice ==3){
+                            	escolherDados(choice);
+                            	String opcao = scanner.next();
+                            	Usuario.editarUsuario(User,choice,opcao);
+                            }
+                            else {
+                            	System.out.println("Opcao invalida");
+                            	break;
+                            }
+                        } else {
+                            System.out.println("Usuario nao encontrado.");
+                        }
                         break;
                     case 5:
-                        handleInfracao(scanner);
+                        perfilVeiculo(scanner);
                         break;
                     case 6:
+                        handleInfracao(scanner);
+                        break;
+                    case 7:
                         System.out.println("Retornando ao menu principal...");
                         break;
                     default:
@@ -487,9 +512,23 @@ public class Main {
             System.out.println("Não foi possivel cadastrar o usuario!\n");
             return false;
         }
+        
+        
     }
 
-
+    public static void escolherDados(int choice) {
+        if(choice == 1){
+        	System.out.println("Digite o novo Nome:");
+        }
+        else if(choice==2) {
+        	System.out.println("Digite o novo email:");
+        }
+        else if(choice==3) {
+        	System.out.println("Digite o novo sexo:");
+        }
+        
+	}
+    
 }
 
     
