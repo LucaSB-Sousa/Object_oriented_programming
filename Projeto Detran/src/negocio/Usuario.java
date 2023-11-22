@@ -3,10 +3,10 @@ package negocio;
 import dados.Dados;
 
 public class Usuario {
-    private String nome;
+    private static String nome;
     private String cpf;
-    private String sexo;
-    private String email;
+    private static String sexo;
+    private static String email;
     private static Cnh cnh;
     private Veiculo veiculo;
     private static Veiculo[] veiculosPessoais;
@@ -14,10 +14,10 @@ public class Usuario {
 
     public Usuario(String nome, String cpf, String sexo, String email, Cnh cnh,Veiculo[] veiculosPessoais) {
 		super();
-		this.nome = nome;
+		Usuario.nome = nome;
 		this.cpf = cpf;
-		this.sexo = sexo;
-		this.email = email;
+		Usuario.sexo = sexo;
+		Usuario.email = email;
 		Usuario.cnh = cnh;
 		Usuario.veiculosPessoais = new Veiculo[50];
 		Usuario.numVeiculos =0;
@@ -29,8 +29,8 @@ public class Usuario {
         return nome;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public static void setNome(String nome) {
+        Usuario.nome = nome;
     }
 
     public String getCpf() {
@@ -45,16 +45,16 @@ public class Usuario {
         return sexo;
     }
 
-    public void setSexo(String sexo) {
-        this.sexo = sexo;
+    public static void setSexo(String sexo) {
+        Usuario.sexo = sexo;
     }
 
     public String getEmail() {
         return email;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public static void setEmail(String email) {
+        Usuario.email = email;
     }
 
     public static Cnh getCnh() {
@@ -252,6 +252,22 @@ public class Usuario {
 		return infracao.getStatus();
 	}
 	
+	public static void editarUsuario(Usuario usuario,int escolhaUsuario,String dado) {
+		switch (escolhaUsuario) {
+			case 1://Mudar nome
+				Usuario.setNome(dado);
+				System.out.println("Nome alterado com sucesso!");
+				break;
+			case 2://Mudar Email
+				Usuario.setEmail(dado);
+				System.out.println("Email alterado com sucesso!");
+				break;
+			case 3://Mudar Sexo
+				Usuario.setSexo(dado);
+				System.out.println("Sexo alterado com sucesso!");
+				break;
+		}
+	}
 }
 
 
