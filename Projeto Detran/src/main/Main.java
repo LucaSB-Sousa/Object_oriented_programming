@@ -464,9 +464,16 @@ public class Main {
                         Infracao novaInfracao = Detran.cadastrarInfracao(infracaoData);
                         break;
                     case 2:
-                        System.out.println("Informe o usuario a ser deletado:");
+                        System.out.println("Informe o CPF do usuário a ser deletado:");
                         String cpfDoUsuario = scanner.nextLine();
+                        boolean removido = Detran.deletarUsuario(cpfDoUsuario);
+                        if (removido) {
+                            System.out.println("Usuário com CPF " + cpfDoUsuario + " removido com sucesso.");
+                        } else {
+                            System.out.println("Usuário com CPF " + cpfDoUsuario + " não encontrado.");
+                        }
                         break;
+
                     case 3:
                         System.out.println("Informe o nome do usuário:");
                         String nome = scanner.nextLine();
@@ -483,7 +490,7 @@ public class Main {
                         break;
                     case 4:
                         System.out.println("Listando todos os usuários...");
-                        for (Usuario usuario : dados.getUsuarios()) {
+                        for (Usuario usuario : Dados.getUsuarios()) {
                             if (usuario != null) {
                                 System.out.println("--------------------------");
                                 System.out.println("Nome: " + usuario.getNome());
@@ -576,9 +583,16 @@ public class Main {
                         Usuario.obterDadosDaInfracao(id);
                         break;
                     case 3: //Pagar infracao
-                        System.out.println("Informe o ID da Infracao:");
-                        String entrada = scanner.nextLine();
-                        Usuario.pagarInfracao(entrada);
+                        System.out.println("Informe o CPF do usuario:");
+                        String CpfUser = scanner.nextLine();
+                        Usuario User = Dados.obterUsuarioPorNomeOuCpf(CpfUser);
+                        if (User != null) {
+                            System.out.println("Informe o ID da Infracao:");
+                            String entrada = scanner.nextLine();
+                            Usuario.pagarInfracao(User,entrada);
+                        } else {
+                            System.out.println("Usuario nao encontrado.");
+                        }
                         break;
                     case 4:
                         System.out.println("Retornando ao menu principal...");
@@ -618,7 +632,7 @@ public class Main {
     public static void listarInfracoesDoUsuario(Usuario usuario) {
         int x = 0;
         for (int i = 0; i < Dados.getnInfracoes(); i++) {
-            if (Dados.getInfracoes(i).getCnh().equals(Usuario.getCnh())) {
+            if (Dados.getInfracoes(i).getCnh().equals(usuario.getCnh())) {
                 x++;
                 System.out.println(i + " -> " + Dados.getInfracoes(i).toString());
             }
@@ -641,8 +655,8 @@ public class Main {
     public static boolean ObterDadosDoVeiculo(Usuario usuario, String placa) {
         boolean dado = false;
         for (int i = 0; i < dados.getnVeiculos(); i++)
-            if (Usuario.getVeiculosPessoais(i) != null && Usuario.getVeiculosPessoais(i).getPlaca().equals(placa)) {
-                System.out.println(" -> " + Usuario.getVeiculosPessoais(i).toString());
+            if (usuario.getVeiculosPessoais(i) != null && usuario.getVeiculosPessoais(i).getPlaca().equals(placa)) {
+                System.out.println(" -> " + usuario.getVeiculosPessoais(i).toString());
                 dado = true;
             }
         if (dado == false) {

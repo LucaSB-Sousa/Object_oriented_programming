@@ -3,69 +3,69 @@ package negocio;
 import dados.Dados;
 
 public class Usuario {
-    private static String nome;
+    private String nome;
     private String cpf;
-    private static String sexo;
-    private static String email;
-    private static Cnh cnh;
+    private String sexo;
+    private String email;
+    private Cnh cnh;
     private Veiculo veiculo;
-    private static Veiculo[] veiculosPessoais;
-    private static int numVeiculos;
+    private Veiculo[] veiculosPessoais;
+    private int numVeiculos;
 
     public Usuario(String nome, String cpf, String sexo, String email, Cnh cnh,Veiculo[] veiculosPessoais) {
 		super();
-		Usuario.nome = nome;
+		this.nome = nome;
 		this.cpf = cpf;
-		Usuario.sexo = sexo;
-		Usuario.email = email;
-		Usuario.cnh = cnh;
-		Usuario.veiculosPessoais = new Veiculo[50];
-		Usuario.numVeiculos =0;
+		this.sexo = sexo;
+		this.email = email;
+		this.cnh = cnh;
+		this.veiculosPessoais = new Veiculo[50];
+		this.numVeiculos =0;
 	}
 
-    
-    
+
+
 	public String getNome() {
-        return nome;
-    }
+		return nome;
+	}
 
-    public static void setNome(String nome) {
-        Usuario.nome = nome;
-    }
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
 
-    public String getCpf() {
-        return cpf;
-    }
+	public String getCpf() {
+		return cpf;
+	}
 
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
-    }
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
+	}
 
-    public String getSexo() {
-        return sexo;
-    }
+	public String getSexo() {
+		return sexo;
+	}
 
-    public static void setSexo(String sexo) {
-        Usuario.sexo = sexo;
-    }
+	public void setSexo(String sexo) {
+		this.sexo = sexo;
+	}
 
-    public String getEmail() {
-        return email;
-    }
+	public String getEmail() {
+		return email;
+	}
 
-    public static void setEmail(String email) {
-        Usuario.email = email;
-    }
+	public void setEmail(String email) {
+		this.email = email;
+	}
 
-    public static Cnh getCnh() {
-        return cnh;
-    }
+	public Cnh getCnh() {
+		return cnh;
+	}
 
-    public void setCnh(Cnh cnh) {
-        Usuario.cnh = cnh;
-    }
-    
-    public Veiculo getVeiculo() {
+	public void setCnh(Cnh cnh) {
+		this.cnh = cnh;
+	}
+
+	public Veiculo getVeiculo() {
 		return veiculo;
 	}
 
@@ -73,27 +73,26 @@ public class Usuario {
 		this.veiculo = veiculo;
 	}
 
-	public static Veiculo[] getVeiculosPessoais() {
+	public Veiculo[] getVeiculosPessoais() {
 		return veiculosPessoais;
 	}
-	
-	public static Veiculo getVeiculosPessoais(int i) {
+
+	public Veiculo getVeiculosPessoais(int i) {
 		return veiculosPessoais[i];
 	}
 
-	public static void setNumVeiculos(int numVeiculos) {
-		Usuario.numVeiculos = numVeiculos;
-	}
-	
-	public static void setVeiculosPessoais(Veiculo[] novoVetor) {
-		Usuario.veiculosPessoais = novoVetor;
-		setNumVeiculos(veiculosPessoais.length);
-	}
-	
-	public static int getNumVeiculos() {
-		return numVeiculos;
+	public void setNumVeiculos(int numVeiculos) {
+		this.numVeiculos = numVeiculos;
 	}
 
+	public void setVeiculosPessoais(Veiculo[] novoVetor) {
+		this.veiculosPessoais = novoVetor;
+		setNumVeiculos(veiculosPessoais.length);
+	}
+
+	public int getNumVeiculos() {
+		return numVeiculos;
+	}
 	@Override
 	public String toString() {
 		if(getCnh()!= null){
@@ -107,7 +106,7 @@ public class Usuario {
     //Adicionar esses métodos a classe main
     public void associarCnhAoUsuario(Cnh cnh) {
     	if (cnh==null) {
-    		Usuario.cnh = cnh;
+			setCnh(cnh);
 		} else {
 			System.out.println("O Usuario ja tem uma Cnh associada.");
 		}
@@ -122,19 +121,7 @@ public class Usuario {
     		adicionarVeiculoPessoal(veiculo);
     	}
     }
-    
-    /*private static void adicionarVeiculoPessoal(Veiculo veiculo) {
-        if (veiculosPessoais == null) {
-        	veiculosPessoais = new Veiculo[1];
-        } else {
-            Veiculo[] novoVeiculosPessoais = new Veiculo[veiculosPessoais.length + 1];
-            System.arraycopy(veiculosPessoais, 0, novoVeiculosPessoais, 0, veiculosPessoais.length);
-            veiculosPessoais = novoVeiculosPessoais;
-        }
 
-        veiculosPessoais[veiculosPessoais.length - 1] = veiculo;
-    }
-    */
 
     public void listarVeiculosPessoais(){
     	if (naoPossuiVeiculos()) {
@@ -230,40 +217,46 @@ public class Usuario {
 			System.out.println("Infracao nao encontrada.");
 		}
 	}
-	
-	public static boolean pagarInfracao(String id){
+
+	public static boolean pagarInfracao(Usuario user, String id){
 		int x = 0;
 		Infracao infracao = null;
+		boolean resultado = false;
 		for (int i = 0; i < Dados.getnInfracoes(); i++) {
-			if (Dados.getInfracoes(i).getId().equals(id)) {
+			if (Dados.getInfracoes(i).getCnh()==user.getCnh()
+					& Dados.getInfracoes(i).getId().equals(id)) {
 				infracao = Dados.getInfracoes(i);
 				x++;
 				if (infracao.getStatus() == true) {
 					System.out.println("Infracao ja paga.");
+					resultado = true;
+					break;
 				} else {
-					Infracao.setStatus(true);
+					infracao.setStatus(true);
 					System.out.println("Infracao paga com sucesso.");
+					resultado = true;
+					break;
 				}
-			} 
+			}
 		}
 		if(x==0) {
 			System.out.println("Infracao nao encontrada.");
 		}
-		return infracao.getStatus();
+		return resultado;
 	}
 	
 	public static void editarUsuario(Usuario usuario,int escolhaUsuario,String dado) {
 		switch (escolhaUsuario) {
 			case 1://Mudar nome
-				Usuario.setNome(dado);
+				usuario.setNome(dado);
 				System.out.println("Nome alterado com sucesso!");
 				break;
 			case 2://Mudar Email
-				Usuario.setEmail(dado);
+				usuario.setEmail(dado);
 				System.out.println("Email alterado com sucesso!");
 				break;
 			case 3://Mudar Sexo
-				Usuario.setSexo(dado);
+				usuario.setSexo(dado);
 				System.out.println("Sexo alterado com sucesso!");
 				break;
 		}

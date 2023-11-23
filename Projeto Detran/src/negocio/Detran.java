@@ -23,8 +23,8 @@ public class Detran {
 
     }
 
-    public void deletarUsuario(Usuario usuario) {
-
+    public static boolean deletarUsuario(String cpf) {
+        return Dados.removerUsuarioPorCpf(cpf);
     }
 
     public void adicionarCnhAoUsuario(Usuario usuario, Cnh cnh) {

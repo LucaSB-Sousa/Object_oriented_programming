@@ -57,6 +57,7 @@ public class Dados {
         }
         return null;
     }
+
     public static Cnh buscarCnh(String numeroCnh) {
         for (int i = 0; i < Dados.getnCnhs(); i++) {
             if (Dados.getCnhs(i).getNumCnh().equals(numeroCnh)) {
@@ -65,6 +66,7 @@ public class Dados {
         }
         return null;
     }
+
     public static Usuario obterUsuarioPorNomeOuCpf(String identificador) {
         Usuario retorno = null;
         for (int i = 0; i < nUsuarios; i++) {
@@ -73,6 +75,16 @@ public class Dados {
             }
         }
         return retorno;
+    }
+
+    public static boolean removerUsuarioPorCpf(String cpf) {
+        for (int i = 0; i < nUsuarios; i++) {
+            if (usuarios[i] != null && usuarios[i].getCpf().equals(cpf)) {
+                usuarios[i] = null;
+                return true;
+            }
+        }
+        return false;
     }
 
     public String[] getNomeUsuarios() {
@@ -114,8 +126,6 @@ public class Dados {
         }
         return s;
     }
-
-
     public void setCnhs(Cnh[] cnhs) {
         Dados.cnhs = cnhs;
     }
