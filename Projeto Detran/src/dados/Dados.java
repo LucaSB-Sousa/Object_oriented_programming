@@ -142,7 +142,7 @@ public class Dados {
         Dados.nCnhs = nCnhs;
     }
 
-    public Infracao[] getInfracoes() {
+    public static Infracao[] getInfracoes() {
         return infracoes;
     }
 
@@ -161,8 +161,12 @@ public class Dados {
     public static int getnInfracoes() {
         return nInfracoes;
     }
+    
+    public static void setnInfracoes(int nInfracoes) {
+		Dados.nInfracoes = nInfracoes;
+	}
 
-    public Veiculo[] getVeiculos() {
+	public Veiculo[] getVeiculos() {
         return veiculos;
     }
 
@@ -338,7 +342,7 @@ public class Dados {
 
         }
         //Cada usuario recebe um tipo de veiculo
-        for (int i = 0; i < 1; i++) {
+        for (int i = 0; i < 10; i++) {
             usuarios[i].associarVeiculoAoUsuario(motos[i]); // Moto
             usuarios[i].associarVeiculoAoUsuario(autosComEixo[i]); // Automóvel com Eixo
             usuarios[i].associarVeiculoAoUsuario(carros[i]); // Carro
