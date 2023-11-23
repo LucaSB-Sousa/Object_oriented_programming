@@ -66,7 +66,12 @@ public class Dados {
         for (int i= 0; i < Dados.getnCnhs(); i++){
             if (cnhs[i].getNumCnh().equals(numeroCnh) & Dados.getCnhs(i) != null){
                 numero = Dados.getCnhs(i);
-                System.out.println(numero);
+                System.out.println("Uf de Emissão: " + numero.getUfEmissao());
+                System.out.println("Data de Validade: " + numero.getDataValidade());
+                System.out.println("Data de Emissão: " + numero.getDataEmissao());
+                System.out.println("Pontuação: " + numero.getPontuacao());
+                System.out.println("Status: " + numero.getStatus());
+                System.out.println("Número da CNH: " + numero.getNumCnh());
                 return true;
             }
         }

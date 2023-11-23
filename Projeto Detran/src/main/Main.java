@@ -62,6 +62,7 @@ public class Main {
             System.out.println("5. Ir para a parte de veiculos");
             System.out.println("6. Ir para a parte Infracoes");
             System.out.println("7. Voltar ao menu principal\n");
+            System.out.println("8. Consultar Cnh pelo número\n");
             System.out.println("--------------------------");
 
             if (scanner.hasNextInt()) {
@@ -123,7 +124,7 @@ public class Main {
                     case 2:
                         System.out.println("Informe o cpf do usuario:");
                         String codigo = scanner.nextLine();
-                        Dados.buscarCnh(codigo);
+                        Dados.buscarUsuarioPorCpf(codigo);
                         break;
 
                     case 3:
@@ -170,6 +171,12 @@ public class Main {
                     case 7:
                         System.out.println("Retornando ao menu principal...");
                         break;
+                    case 8:
+                        System.out.println("Insira o número da Cnh a ser consultada");
+                        String numeroCnh = scanner.nextLine();
+                        Dados.buscarCnh(numeroCnh);
+                        break;
+
                     default:
                         System.out.println("Opcao invalida.");
                         break;
