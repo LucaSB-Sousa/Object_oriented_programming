@@ -135,20 +135,19 @@ public class Usuario {
         veiculosPessoais[veiculosPessoais.length - 1] = veiculo;
     }
     */
-    
-    public void listarVeiculosPessoais(){
-    	if (naoPossuiVeiculos()) {
+
+	public void listarVeiculosPessoais() {
+		if (naoPossuiVeiculos()) {
 			System.out.println("Nao ha veiculos cadastrados para este Usuario.");
+		} else {
+			for (int i = 0; i < veiculosPessoais.length; i++) {
+				Veiculo veiculo = getVeiculosPessoais(i);
+				if (veiculo != null) {
+					System.out.println(i + " -> " + veiculo.obterDadosVeiculo());
+				}
+			}
 		}
-    	else {
-    		for (int i = 0; i < veiculosPessoais.length; i++){
-    			if(getVeiculosPessoais(i)!=null){
-    				System.out.println(i + " -> " + getVeiculosPessoais(i));
-    			}
-    		}
-    	}
-    	
-    }
+	}
     
     public void adicionarVeiculoPessoal(Veiculo veiculo) {
         if (numVeiculos > 50) {

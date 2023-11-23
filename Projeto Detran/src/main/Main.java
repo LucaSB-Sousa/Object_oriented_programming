@@ -59,10 +59,10 @@ public class Main {
             System.out.println("2. Obter dados do usuario");
             System.out.println("3. Obter dados dos veiculos de um usuario");
             System.out.println("4. Editar um Usuario.");
-            System.out.println("5. Ir para a parte de veiculos");
-            System.out.println("6. Ir para a parte Infracoes");
-            System.out.println("7. Voltar ao menu principal\n");
-            System.out.println("8. Consultar Cnh pelo número\n");
+            System.out.println("5. Veiculos");
+            System.out.println("6. Infracoes");
+            System.out.println("7. Consultar Cnh pelo número");
+            System.out.println("8. Voltar ao menu principal\n");
             System.out.println("--------------------------");
 
             if (scanner.hasNextInt()) {
@@ -102,19 +102,19 @@ public class Main {
                         System.out.println("Você ja tem uma Cnh?");
 
                         System.out.println("--------------------------");
-                        System.out.println("1. Nao");
-                        System.out.println("2. Sim");
+                        System.out.println("1. Sim");
+                        System.out.println("2. Não");
                         System.out.println("--------------------------");
                         escolhaUsuario = scanner.nextInt();
                         scanner.nextLine();
 
                         switch (escolhaUsuario) {
                             case 1:
-                                cadastrarContaSemCnh(nome, cpf, sexo, email);
-                                break;
-                            case 2:
                                 System.out.println("Informe os dados da cnh:");
                                 cadastrarContaComCnh(nome, cpf, sexo, email);
+                                break;
+                            case 2:
+                                cadastrarContaSemCnh(nome, cpf, sexo, email);
                                 break;
                             default:
                                 System.out.println("Opção inválida.");
@@ -124,15 +124,89 @@ public class Main {
                     case 2:
                         System.out.println("Informe o cpf do usuario:");
                         String codigo = scanner.nextLine();
-                        Dados.buscarUsuarioPorCpf(codigo);
+                        Usuario usuarioEncontrado = Dados.buscarUsuarioPorCpf(codigo);
+                        if (usuarioEncontrado != null) {
+                            System.out.println("Nome: " + usuarioEncontrado.getNome());
+                            System.out.println("CPF: " + usuarioEncontrado.getCpf());
+                            System.out.println("Sexo: " + usuarioEncontrado.getSexo());
+                            System.out.println("Email: " + usuarioEncontrado.getEmail());
+
+                            if (usuarioEncontrado.getCnh() != null) {
+                                System.out.println("Numero da CNH: " + usuarioEncontrado.getCnh().getNumCnh());
+                            }
+
+                            if (!usuarioEncontrado.naoPossuiVeiculos()) {
+                                System.out.println("\nVeiculos Pessoais:");
+                                for (int i = 0; i < usuarioEncontrado.getNumVeiculos(); i++) {
+                                    Veiculo veiculo = usuarioEncontrado.getVeiculosPessoais(i);
+                                    if (veiculo != null) {
+                                        String tipoVeiculo = "Veiculo"; // Tipo genérico
+
+                                        // Verificando os tipos específicos
+                                        if (veiculo instanceof Moto) {
+                                            tipoVeiculo = "Moto";
+                                        } else if (veiculo instanceof Carro) {
+                                            tipoVeiculo = "Carro";
+                                        } else if (veiculo instanceof Van) {
+                                            tipoVeiculo = "Van";
+                                        } else if (veiculo instanceof Caminhao) {
+                                            tipoVeiculo = "Caminhao";
+                                        } // Adicione mais 'else if' para outros tipos, se houver
+
+                                        // Imprimindo os detalhes
+                                        System.out.println("Veiculo " + i + ": " + tipoVeiculo);
+                                        System.out.println("Modelo: " + veiculo.getModelo());
+                                        System.out.println("Placa: " + veiculo.getPlaca());
+                                        System.out.println("Cor: " + veiculo.getCor());
+                                        System.out.println("Ano: " + veiculo.getAno());
+                                        System.out.println("Estado: " + veiculo.getEstado());
+                                        System.out.println("Marca: " + veiculo.getMarca());
+                                        System.out.println(); // Linha em branco para separar os veículos
+                                    }
+                                }
+                            }
+                        } else {
+                            System.out.println("Usuario nao encontrado");
+                        }
                         break;
 
                     case 3:
                         System.out.println("Informe o nome ou CPF do usuário:");
                         String identificador = scanner.nextLine();
-                        Usuario usuarioEncontrado = Dados.obterUsuarioPorNomeOuCpf(identificador);
-                        if (usuarioEncontrado != null) {
-                            usuarioEncontrado.listarVeiculosPessoais();
+                        Usuario usuarioEncontrado1 = Dados.obterUsuarioPorNomeOuCpf(identificador);
+
+                        if (usuarioEncontrado1 != null) {
+                            if (usuarioEncontrado1.naoPossuiVeiculos()) {
+                                System.out.println("Nao ha veiculos cadastrados para este Usuario.");
+                            } else {
+                                for (int i = 0; i < usuarioEncontrado1.getNumVeiculos(); i++) {
+                                    Veiculo veiculo = usuarioEncontrado1.getVeiculosPessoais(i);
+                                    if (veiculo != null) {
+                                        String tipoVeiculo = "Veiculo"; // Tipo genérico
+
+                                        // Verificando os tipos específicos
+                                        if (veiculo instanceof Moto) {
+                                            tipoVeiculo = "Moto";
+                                        } else if (veiculo instanceof Carro) {
+                                            tipoVeiculo = "Carro";
+                                        } else if (veiculo instanceof Van) {
+                                            tipoVeiculo = "Van";
+                                        } else if (veiculo instanceof Caminhao) {
+                                            tipoVeiculo = "Caminhao";
+                                        } // Adicione mais 'else if' para outros tipos, se houver
+
+                                        // Imprimindo os detalhes
+                                        System.out.println("Veiculo " + i + ": " + tipoVeiculo);
+                                        System.out.println("Modelo: " + veiculo.getModelo());
+                                        System.out.println("Placa: " + veiculo.getPlaca());
+                                        System.out.println("Cor: " + veiculo.getCor());
+                                        System.out.println("Ano: " + veiculo.getAno());
+                                        System.out.println("Estado: " + veiculo.getEstado());
+                                        System.out.println("Marca: " + veiculo.getMarca());
+                                        System.out.println(); // Linha em branco para separar os veículos
+                                    }
+                                }
+                            }
                         } else {
                             System.out.println("Usuario nao encontrado.");
                         }
@@ -169,13 +243,27 @@ public class Main {
                         handleInfracao(scanner);
                         break;
                     case 7:
-                        System.out.println("Retornando ao menu principal...");
-                        break;
-                    case 8:
                         System.out.println("Insira o número da Cnh a ser consultada");
                         String numeroCnh = scanner.nextLine();
-                        Dados.buscarCnh(numeroCnh);
+                        Cnh cnhEncontrada = Dados.buscarCnh(numeroCnh);
+
+                        if (cnhEncontrada != null) {
+                            // Imprime os detalhes da CNH
+                            System.out.println("Uf de Emissão: " + cnhEncontrada.getUfEmissao());
+                            System.out.println("Data de Validade: " + cnhEncontrada.getDataValidade());
+                            System.out.println("Data de Emissão: " + cnhEncontrada.getDataEmissao());
+                            System.out.println("Pontuação: " + cnhEncontrada.getPontuacao());
+                            System.out.println("Status: " + cnhEncontrada.getStatus());
+                            System.out.println("Número da CNH: " + cnhEncontrada.getNumCnh());
+                        } else {
+                            System.out.println("CNH não encontrada.");
+                        }
                         break;
+
+                    case 8:
+                        System.out.println("Retornando ao menu principal...");
+                        return;
+
 
                     default:
                         System.out.println("Opcao invalida.");
@@ -185,7 +273,7 @@ public class Main {
                 System.out.println("Por favor, insira um número válido.");
                 scanner.nextLine();
             }
-        } while (escolhaUsuario != 6);
+        } while (escolhaUsuario != 7);
     }
 
     private static void perfilVeiculo(Scanner scanner) {
@@ -197,7 +285,7 @@ public class Main {
             System.out.println("1. Cadastrar Veiculo a um usuario");
             System.out.println("2. Obter dados dos veiculos de um usuario");
             System.out.println("3. Listar modelos dos veiculos do usuario");
-            System.out.println("4. Obter daado de um veiculo especifico");
+            System.out.println("4. Obter dado de um veiculo especifico");
             System.out.println("5. Voltar ao menu principal\n");
             System.out.println("--------------------------");
 
@@ -208,18 +296,111 @@ public class Main {
 
                 switch (escolhaVeiculo) {
                     case 1:
-                        System.out.println("Esqueci de fazer...");
+                        System.out.println("Informe o CPF do usuário para cadastrar um veículo:");
+                        String cpfUsuario = scanner.nextLine();
+                        Usuario usuario = Dados.buscarUsuarioPorCpf(cpfUsuario);
+
+                        if (usuario != null) {
+                            System.out.println("Informe o tipo de veículo (Carro, Moto, Van, Caminhao, AutomoveisComEixo):");
+                            String tipoVeiculo = scanner.nextLine();
+                            System.out.println("Modelo:");
+                            String modelo = scanner.nextLine();
+                            System.out.println("Placa:");
+                            String placa = scanner.nextLine();
+                            System.out.println("Cor:");
+                            String cor = scanner.nextLine();
+                            System.out.println("Ano:");
+                            int ano = scanner.nextInt();
+                            scanner.nextLine(); // Consume the remaining newline
+                            System.out.println("Estado:");
+                            String estado = scanner.nextLine();
+                            System.out.println("Marca:");
+                            String marca = scanner.nextLine();
+                            System.out.println("Peso:");
+                            int peso = scanner.nextInt();
+                            scanner.nextLine(); // Consume the remaining newline
+                            System.out.println("Número de Passageiros:");
+                            int nPassageiros = scanner.nextInt();
+                            scanner.nextLine(); // Consume the remaining newline
+
+                            Veiculo novoVeiculo = null;
+
+                            switch (tipoVeiculo.toLowerCase()) {
+                                case "carro":
+                                    novoVeiculo = new Carro(modelo, placa, cor, ano, estado, marca, peso, nPassageiros);
+                                    break;
+                                case "moto":
+                                    novoVeiculo = new Moto(modelo, placa, cor, ano, estado, marca, peso, nPassageiros);
+                                    break;
+                                case "van":
+                                    System.out.println("Tipo da Van:");
+                                    String tipoVan = scanner.nextLine();
+                                    novoVeiculo = new Van(modelo, placa, cor, ano, estado, marca, peso, nPassageiros, tipoVan);
+                                    break;
+                                case "caminhao":
+                                    System.out.println("Tipo do Caminhão:");
+                                    String tipoCaminhao = scanner.nextLine();
+                                    novoVeiculo = new Caminhao(modelo, placa, cor, ano, estado, marca, peso, nPassageiros, tipoCaminhao);
+                                    break;
+                                case "automoveiscomeixo":
+                                    System.out.println("Tipo do Automóvel com Eixo:");
+                                    String tipoAutoEixo = scanner.nextLine();
+                                    novoVeiculo = new AutomoveisComEixo(modelo, placa, cor, ano, estado, marca, peso, nPassageiros, tipoAutoEixo);
+                                    break;
+                                default:
+                                    System.out.println("Tipo de veículo não reconhecido.");
+                                    return;
+                            }
+
+                            if (novoVeiculo != null) {
+                                usuario.adicionarVeiculoPessoal(novoVeiculo);
+                                System.out.println("Veículo cadastrado com sucesso!");
+                            }
+                        } else {
+                            System.out.println("Usuário não encontrado.");
+                        }
                         break;
+
                     case 2:
                         System.out.println("Informe o nome ou CPF do usuário:");
                         String identificador = scanner.nextLine();
                         Usuario usuarioEncontrado = Dados.obterUsuarioPorNomeOuCpf(identificador);
+
                         if (usuarioEncontrado != null) {
-                            usuarioEncontrado.listarVeiculosPessoais();
+                            if (usuarioEncontrado.naoPossuiVeiculos()) {
+                                System.out.println("Nao ha veiculos cadastrados para este Usuario.");
+                            } else {
+                                for (int i = 0; i < usuarioEncontrado.getNumVeiculos(); i++) {
+                                    Veiculo veiculo = usuarioEncontrado.getVeiculosPessoais(i);
+                                    if (veiculo != null) {
+                                        System.out.println("Veiculo " + (i + 1) + ":");
+                                        if (veiculo instanceof Carro) {
+                                            System.out.println("Tipo: Carro");
+                                        } else if (veiculo instanceof Moto) {
+                                            System.out.println("Tipo: Moto");
+                                        } else if (veiculo instanceof Van) {
+                                            System.out.println("Tipo: Van");
+                                        } else if (veiculo instanceof Caminhao) {
+                                            System.out.println("Tipo: Caminhão");
+                                        } else if (veiculo instanceof AutomoveisComEixo) {
+                                            System.out.println("Tipo: Automóveis com Eixo");
+                                        }
+                                        // Exibir detalhes comuns a todos os veículos
+                                        System.out.println("Modelo: " + veiculo.getModelo());
+                                        System.out.println("Placa: " + veiculo.getPlaca());
+                                        System.out.println("Cor: " + veiculo.getCor());
+                                        System.out.println("Ano: " + veiculo.getAno());
+                                        System.out.println("Estado: " + veiculo.getEstado());
+                                        System.out.println("Marca: " + veiculo.getMarca());
+                                        System.out.println(); // Linha em branco para separar os veículos
+                                    }
+                                }
+                            }
                         } else {
-                            System.out.println("Usuario nao encontrado.");
+                            System.out.println("Usuário não encontrado.");
                         }
                         break;
+
 
                     case 3: //Listar modelos dos veiculos do usuario
                         System.out.println("Informe o nome ou CPF do usuário:");
@@ -302,7 +483,7 @@ public class Main {
                         break;
                     case 4:
                         System.out.println("Listando todos os usuários...");
-                        for (Usuario usuario : dados.getUsuarios1()) {
+                        for (Usuario usuario : dados.getUsuarios()) {
                             if (usuario != null) {
                                 System.out.println("--------------------------");
                                 System.out.println("Nome: " + usuario.getNome());

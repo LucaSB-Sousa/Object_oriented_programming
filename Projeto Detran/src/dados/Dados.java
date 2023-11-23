@@ -49,33 +49,21 @@ public class Dados {
         return usuarios[i];
     }
 
-    public static boolean buscarUsuarioPorCpf(String cpf) {
-        Usuario volta = null;
+    public static Usuario buscarUsuarioPorCpf(String cpf) {
         for (int i = 0; i < Dados.getnUsuarios(); i++) {
-            if (Dados.getUsuarios(i).getCpf().equals(cpf) & Dados.getUsuarios(i) != null) {
-                volta = Dados.getUsuarios(i);
-                System.out.println(volta);
-                return true;
+            if (Dados.getUsuarios(i).getCpf().equals(cpf)) {
+                return Dados.getUsuarios(i);
             }
         }
-        System.out.println("Usuario nao encontrado");
-        return false;
+        return null;
     }
-    public static boolean buscarCnh(String numeroCnh){
-        Cnh numero = null;
-        for (int i= 0; i < Dados.getnCnhs(); i++){
-            if (cnhs[i].getNumCnh().equals(numeroCnh) & Dados.getCnhs(i) != null){
-                numero = Dados.getCnhs(i);
-                System.out.println("Uf de Emissão: " + numero.getUfEmissao());
-                System.out.println("Data de Validade: " + numero.getDataValidade());
-                System.out.println("Data de Emissão: " + numero.getDataEmissao());
-                System.out.println("Pontuação: " + numero.getPontuacao());
-                System.out.println("Status: " + numero.getStatus());
-                System.out.println("Número da CNH: " + numero.getNumCnh());
-                return true;
+    public static Cnh buscarCnh(String numeroCnh) {
+        for (int i = 0; i < Dados.getnCnhs(); i++) {
+            if (Dados.getCnhs(i).getNumCnh().equals(numeroCnh)) {
+                return Dados.getCnhs(i);
             }
         }
-        return false;
+        return null;
     }
     public static Usuario obterUsuarioPorNomeOuCpf(String identificador) {
         Usuario retorno = null;
