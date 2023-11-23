@@ -82,7 +82,7 @@ public class Main {
                         System.out.println("Digite o numero de cpf:");
                         cpf = in.nextLine();
                         for (int i = 0; i < Dados.getnUsuarios(); i++) {
-                            if (Dados.getUsuarios(i).getCpf().equals(cpf)) {
+                            if (Dados.getUsuarios(i)!=null && Dados.getUsuarios(i).getCpf().equals(cpf)) {
                                 System.out.println("Cpf ja cadastrado, tente novamente.");
                                 perfilUsuario(scanner);
                             }
@@ -254,7 +254,7 @@ public class Main {
                             System.out.println("Data de Emissão: " + cnhEncontrada.getDataEmissao());
                             System.out.println("Pontuação: " + cnhEncontrada.getPontuacao());
                             System.out.println("Status: " + cnhEncontrada.getStatus());
-                            System.out.println("Número da CNH: " + cnhEncontrada.getNumCnh());
+                            System.out.println("Numero da CNH: " + cnhEncontrada.getNumCnh());
                         } else {
                             System.out.println("CNH não encontrada.");
                         }
@@ -270,7 +270,7 @@ public class Main {
                         break;
                 }
             } else {
-                System.out.println("Por favor, insira um número válido.");
+                System.out.println("Por favor, insira um numero valido.");
                 scanner.nextLine();
             }
         } while (escolhaUsuario != 7);
@@ -459,9 +459,30 @@ public class Main {
                 scanner.nextLine();
                 switch (escolhaDetran) {
                     case 1:
-                        System.out.println("Informe os dados da infração (tipo, valor, data, local, status, id - separados por vírgula):");
-                        String[] infracaoData = scanner.nextLine().split(",");
-                        Infracao novaInfracao = Detran.cadastrarInfracao(infracaoData);
+                    	System.out.println("Informe o Cpf do Usuario:");
+                        String cpf = scanner.nextLine();
+                        Usuario User = Dados.obterUsuarioPorNomeOuCpf(cpf);
+                        if (User != null && User.getCnh()!=null) {
+                        	Cnh cnhUser = User.getCnh();
+                        	System.out.println("tipo de Infracao:");
+                            String tipoInfracao = scanner.nextLine();
+                            System.out.println("A data da Infracao:");
+                            String data = scanner.nextLine();
+                            System.out.println("Local:");
+                            String local = scanner.nextLine();
+                            System.out.println("Valor:");
+                            double valor = scanner.nextDouble();
+                            scanner.nextLine(); // Consume the remaining newline
+                            System.out.println("Id:");
+                            String id = scanner.nextLine();
+                            Detran.cadastrarInfracao(tipoInfracao,data,local,valor,id,cnhUser);
+                        } 
+                        else if(User.getCnh()==null) {
+                        	System.out.println("Usuario nao tem uma Cnh associada.");
+                        }
+                        else {
+                            System.out.println("Usuario nao encontrado.");
+                        }
                         break;
                     case 2:
                         System.out.println("Informe o CPF do usuario a ser deletado:");
