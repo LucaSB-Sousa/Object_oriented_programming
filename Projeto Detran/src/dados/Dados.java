@@ -70,7 +70,7 @@ public class Dados {
     public static Usuario obterUsuarioPorNomeOuCpf(String identificador) {
         Usuario retorno = null;
         for (int i = 0; i < nUsuarios; i++) {
-            if (Dados.getUsuarios(i).getNome().equals(identificador) || Dados.getUsuarios(i).getCpf().equals(identificador)) {
+            if (Dados.getUsuarios(i)!=null && (Dados.getUsuarios(i).getNome().equals(identificador) || Dados.getUsuarios(i).getCpf().equals(identificador))) {
                 retorno = usuarios[i];
             }
         }
