@@ -8,7 +8,7 @@ public class Infracao {
     private boolean status;
     private String id;
     private Cnh cnh;
-	public int numInfracoes;
+	public static int numInfracoes;
 
     public Infracao(String tipo, double valor, String dataInfracao, String local, boolean status, String id,Cnh cnh) {
         this.tipo = tipo;
@@ -23,8 +23,16 @@ public class Infracao {
     public String getTipo() {
         return tipo;
     }
+        
+    public static int getNumInfracoes() {
+		return numInfracoes;
+	}
+    
+	public static void setNumInfracoes(int numInfracoes) {
+		Infracao.numInfracoes = numInfracoes;
+	}
 
-    public void setTipo(String tipo) {
+	public void setTipo(String tipo) {
         this.tipo = tipo;
     }
 

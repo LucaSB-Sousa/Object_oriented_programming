@@ -23,49 +23,49 @@ public class Usuario {
 		this.numVeiculos =0;
 	}
 
-    
-    
+
+
 	public String getNome() {
-        return nome;
-    }
+		return nome;
+	}
 
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
 
-    public String getCpf() {
-        return cpf;
-    }
+	public String getCpf() {
+		return cpf;
+	}
 
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
-    }
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
+	}
 
-    public String getSexo() {
-        return sexo;
-    }
+	public String getSexo() {
+		return sexo;
+	}
 
-    public void setSexo(String sexo) {
-        this.sexo = sexo;
-    }
+	public void setSexo(String sexo) {
+		this.sexo = sexo;
+	}
 
-    public String getEmail() {
-        return email;
-    }
+	public String getEmail() {
+		return email;
+	}
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
-    
-    public Cnh getCnh() {
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public Cnh getCnh() {
 		return cnh;
 	}
-    
+
 	public void setCnh(Cnh cnh) {
-        this.cnh = cnh;
-    }
-    
-    public Veiculo getVeiculo() {
+		this.cnh = cnh;
+	}
+
+	public Veiculo getVeiculo() {
 		return veiculo;
 	}
 
@@ -76,7 +76,7 @@ public class Usuario {
 	public Veiculo[] getVeiculosPessoais() {
 		return veiculosPessoais;
 	}
-	
+
 	public Veiculo getVeiculosPessoais(int i) {
 		return veiculosPessoais[i];
 	}
@@ -84,16 +84,15 @@ public class Usuario {
 	public void setNumVeiculos(int numVeiculos) {
 		this.numVeiculos = numVeiculos;
 	}
-	
+
 	public void setVeiculosPessoais(Veiculo[] novoVetor) {
-		veiculosPessoais = novoVetor;
+		this.veiculosPessoais = novoVetor;
 		setNumVeiculos(veiculosPessoais.length);
 	}
-	
+
 	public int getNumVeiculos() {
 		return numVeiculos;
 	}
-
 	@Override
 	public String toString() {
 		if(getCnh()!= null){
@@ -107,7 +106,7 @@ public class Usuario {
     //Adicionar esses métodos a classe main
     public void associarCnhAoUsuario(Cnh cnh) {
     	if (cnh==null) {
-    		setCnh(cnh);
+			setCnh(cnh);
 		} else {
 			System.out.println("O Usuario ja tem uma Cnh associada.");
 		}
@@ -122,19 +121,7 @@ public class Usuario {
     		adicionarVeiculoPessoal(veiculo);
     	}
     }
-    
-    /*private static void adicionarVeiculoPessoal(Veiculo veiculo) {
-        if (veiculosPessoais == null) {
-        	veiculosPessoais = new Veiculo[1];
-        } else {
-            Veiculo[] novoVeiculosPessoais = new Veiculo[veiculosPessoais.length + 1];
-            System.arraycopy(veiculosPessoais, 0, novoVeiculosPessoais, 0, veiculosPessoais.length);
-            veiculosPessoais = novoVeiculosPessoais;
-        }
 
-        veiculosPessoais[veiculosPessoais.length - 1] = veiculo;
-    }
-    */
 
     public void listarVeiculosPessoais(){
     	if (naoPossuiVeiculos()) {
@@ -230,7 +217,7 @@ public class Usuario {
 			System.out.println("Infracao nao encontrada.");
 		}
 	}
-	
+
 	public static boolean pagarInfracao(Usuario user, String id){
 		int x = 0;
 		Infracao infracao = null;
@@ -250,7 +237,7 @@ public class Usuario {
 					resultado = true;
 					break;
 				}
-			} 
+			}
 		}
 		if(x==0) {
 			System.out.println("Infracao nao encontrada.");

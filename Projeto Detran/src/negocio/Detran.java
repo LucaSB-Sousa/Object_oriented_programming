@@ -42,49 +42,12 @@ public class Detran {
     public void editarInfracao(String id, String novoTipo, int novoValor, int novaDataInfracao, String novoLocal, String novoStatus) {
 
     }
-
-    public static Infracao cadastrarInfracao(String[] infracaoData) {
-        return null;
-    }
-	
-	/*public static void removerVeiculo(Veiculo veiculo,Usuario usuario) {
-		int n = Usuario.getVeiculosPessoais().length;
-		Veiculo[] vetor = Usuario.getVeiculosPessoais();
-	    if (vetor != null && Usuario.getVeiculosPessoais().length > 0) {
-	        int y = 0;
-	        int posicao;
-	        int x;
-	        for (x = 0; x < n; x++) {
-	            if (vetor[x].equals(veiculo)) {
-	                y = 1;
-	                posicao = x;
-	                break;
-	            }
-	        }
-
-	        if (y == 1) {
-	            if (n > 1) {
-	                Veiculo[] novoVetor = new Veiculo[n - 1];
-	                int novoIndice = 0;
-	                posicao = x;
-	                for (int i = 0; i < n-1; i++) {
-	                    if (i==posicao) {
-	                        continue;
-	                    } else {
-	                        novoVetor[novoIndice] = vetor[i];
-	                        novoIndice++;
-	                    }
-	                }
-	                Usuario.setVeiculosPessoais(novoVetor);
-	            } else {
-	            	vetor = null; // Se há apenas um veículo, definir o vetor como nulo
-	            }
-	        } else {
-	            System.out.println("Veiculo nao encontrado.");
-	        }
-	    } else {
-	        System.out.println("Usuario nao tem veiculos associados.");
-	    }
-	}*/
+    
+	public static void cadastrarInfracao(String tipoInfracao, String data, String local, 
+			double valor,String id,Cnh cnhUser) {
+		Dados.getInfracoes()[Dados.getnInfracoes()] = new Infracao(tipoInfracao, valor, data, local, false, id, cnhUser);		
+		Dados.setnInfracoes(Dados.getnInfracoes()+1);
+		Infracao.setNumInfracoes(Infracao.getNumInfracoes()+1);
+	}
 
 }
