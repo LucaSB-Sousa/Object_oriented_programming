@@ -5,10 +5,10 @@ import dados.Dados;
 public class Detran {
     //private Infracao infracao;
     private Cnh cnh;
-    private static Dados dados = new Dados();
+    private Dados dados = new Dados();
 
     public Detran(Dados dados) {
-        Detran.dados = dados;
+        this.dados = dados;
     }
 
     public Cnh getCnh() {
