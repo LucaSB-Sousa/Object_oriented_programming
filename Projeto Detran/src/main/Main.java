@@ -442,13 +442,13 @@ public class Main {
         int escolhaDetran = 0;
         do {
             System.out.println("--------------------------");
-            System.out.println("Você selecionou Detran.");
-            System.out.println("Selecione uma ação:");
-            System.out.println("1. Adicionar infração ao usuário");
-            System.out.println("2. Deletar usuário");
-            System.out.println("3. Obter dados do usuário pelo nome");
-            System.out.println("4. Listar todos os usuários");
-            System.out.println("5. Listar todas as infrações");
+            System.out.println("Voce selecionou Detran.");
+            System.out.println("Selecione uma acao:");
+            System.out.println("1. Adicionar infracao ao usuario");
+            System.out.println("2. Deletar usuario");
+            System.out.println("3. Obter dados do usuario pelo nome");
+            System.out.println("4. Listar todos os usuarios");
+            System.out.println("5. Listar todas as infracoes");
             System.out.println("6. Listar todas as CNHs");
             System.out.println("7. Voltar ao menu principal");
             System.out.println("--------------------------");
@@ -464,32 +464,32 @@ public class Main {
                         Infracao novaInfracao = Detran.cadastrarInfracao(infracaoData);
                         break;
                     case 2:
-                        System.out.println("Informe o CPF do usuário a ser deletado:");
+                        System.out.println("Informe o CPF do usuario a ser deletado:");
                         String cpfDoUsuario = scanner.nextLine();
                         boolean removido = Detran.deletarUsuario(cpfDoUsuario);
                         if (removido) {
-                            System.out.println("Usuário com CPF " + cpfDoUsuario + " removido com sucesso.");
+                            System.out.println("Usuario com CPF " + cpfDoUsuario + " removido com sucesso.");
                         } else {
-                            System.out.println("Usuário com CPF " + cpfDoUsuario + " não encontrado.");
+                            System.out.println("Usuario com CPF " + cpfDoUsuario + " não encontrado.");
                         }
                         break;
 
                     case 3:
-                        System.out.println("Informe o nome do usuário:");
+                        System.out.println("Informe o nome do usuario:");
                         String nome = scanner.nextLine();
                         Usuario usuarioEncontrado = Dados.obterUsuarioPorNomeOuCpf(nome);
                         if (usuarioEncontrado != null) {
-                            System.out.println("Dados do usuário:");
+                            System.out.println("Dados do usuario:");
                             System.out.println("Nome: " + usuarioEncontrado.getNome());
                             System.out.println("CPF: " + usuarioEncontrado.getCpf());
                             System.out.println("Sexo: " + usuarioEncontrado.getSexo());
                             System.out.println("Email: " + usuarioEncontrado.getEmail());
                         } else {
-                            System.out.println("Usuário não encontrado.");
+                            System.out.println("Usuario nao encontrado.");
                         }
                         break;
                     case 4:
-                        System.out.println("Listando todos os usuários...");
+                        System.out.println("Listando todos os usuarios...");
                         for (Usuario usuario : Dados.getUsuarios()) {
                             if (usuario != null) {
                                 System.out.println("--------------------------");
@@ -505,7 +505,7 @@ public class Main {
                         //listarUsuarios();
                         break;
                     case 5:
-                        System.out.println("Listando todas as infrações...");
+                        System.out.println("Listando todas as infracoes...");
                         for (Infracao infracao : dados.getInfracoes()) {
                             if (infracao != null) {
                                 System.out.println("--------------------------");
@@ -524,12 +524,12 @@ public class Main {
                         for (Cnh cnh : dados.getCnhs()) {
                             if (cnh != null) {
                                 System.out.println("Categoria: " + cnh.getCategoria());
-                                System.out.println("UF Emissão: " + cnh.getUfEmissao());
-                                System.out.println("Data Emissão: " + cnh.getDataEmissao());
+                                System.out.println("UF Emissao: " + cnh.getUfEmissao());
+                                System.out.println("Data Emissao: " + cnh.getDataEmissao());
                                 System.out.println("Data Validade: " + cnh.getDataValidade());
-                                System.out.println("Pontuação: " + cnh.getPontuacao());
+                                System.out.println("Pontuacao: " + cnh.getPontuacao());
                                 System.out.println("Status: " + cnh.getStatus());
-                                System.out.println("Número CNH: " + cnh.getNumCnh());
+                                System.out.println("Numero CNH: " + cnh.getNumCnh());
                                 System.out.println("--------------------------");
                             }
                         }
